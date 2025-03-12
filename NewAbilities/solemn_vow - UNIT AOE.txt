@@ -1,0 +1,90 @@
+"solemn_vow - UNIT AOE"
+{
+    "AbilityBehavior"           "UNIT_TARGET | AOE"
+    "AbilityTeamFilter"         "TEAM_ENEMY"
+
+    "AnimationID"               "SpecialAttack"
+    "CastFXId"                  "MagicBoltCastFXMega"
+    "Icon"                      "BlessingOfBattle"
+    
+    "AbilityAOEKind"            "RANGE_CIRCLE"
+    "AbilityAOECenterOnCaster"  "0"
+    "AbilityAOEAffectsCaster"   "1"
+
+    "AbilityAOETeamFilter"      "TEAM_ENEMY"
+    "AbilityAOERange"           "%aoeRadius"
+    "AbilityCastRange"          "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCooldown"           "4"
+    "AbilityAPCost"             "1"
+
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "attackBonus"   "-99"
+        }
+
+        "02"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "aoeRadius"     "1"
+        }
+
+        "03"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "duration"      "3"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+        
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"        "%TARGET"
+                "Radius"        "%aoeRadius"
+                "Teams"         "TEAM_ENEMY"
+                "CustomFilter"  "customUnitFilter(#theUnit, not(isOnState(%theUnit, #PROP)))"
+            }
+
+            "IteratorName" "#newTarget"
+        
+            "Actions"    
+            {
+                "ApplyModifier"
+                {
+                    "ModifierName"      "modifier_cleric_vow_of_peace"
+                    "Target"            "%newTarget"
+                    "Duration"          "%duration"
+                }
+            }
+        }
+        
+        "RemoveModifier"
+        {
+            "ModifierName"  "cleric_holy_points_modifier"
+            "Target"        "%SOURCE"
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_cleric_vow_of_peace"
+        {
+            "Icon"              "ParryStance"
+            "IconPriority"      "50"
+            "EffectName"        "CleaverUndyingRageStatusFXMega"
+
+
+            "PropertiesAdd"
+            {
+                "extraDamage"   "%attackBonus"
+            }
+        }
+    }
+}

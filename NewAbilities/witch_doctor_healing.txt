@@ -1,0 +1,76 @@
+
+
+
+
+
+
+
+"witch_doctor_healing"
+{
+    
+    
+    "AbilityBehavior"       "UNIT_TARGET | POSITIVE_EFFECT"
+    "AbilityTeamFilter" "TEAM_FRIENDLY"
+
+    "AnimationID"   "SpellCastB"
+    "CastFXId" "HealingCastFXMega"
+    "Icon" "WitchDoctorHealing"
+
+    "AbilityCastRange" "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCastMinRange" "1"  
+    "AbilityCooldown"     "3"
+    "AbilityAPCost"       "1"
+
+
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "heal" "stat(%CASTER,#attackDamage)"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+
+        "Heal"
+        {
+            "Target"        "%TARGET"
+            "HealAmount"    "expr(%heal)"
+        }
+
+        "AttachEffect"
+        {
+            "EffectName" "HealingFXMega"
+            "Target" "%TARGET"
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "3"
+            "Considerations"
+            {
+                "Has a minimum of health missing"
+                {
+                    "Curve" "Linear|10|1|0|0.9"
+                    "Consideration" "HealthMissingRelativeToValue"
+                    "Params"
+                    {
+                        "Value" "expr(%heal) * 0.3"  
+                    }
+                }
+
+                "Priorizes target with more missing health percent"
+                {
+                    "Curve" "Logistic|10|0.7|0.3|0.5"
+                    "Consideration" "HealthMissingRelativeToValue"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+"barbarian_regeneration_trait"
+{
+    "AbilityBehavior"       "POSITIVE_EFFECT | PASSIVE"
+    "Icon" "Regeneration"
+    
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "healForTooltip" "stat(%CASTER,#barbarian_regeneration)"
+        }
+
+        "02"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "heal" "stat(%TARGET,#barbarian_regeneration)"
+        }
+    }
+
+    "Modifiers"
+    {
+        "barbarian_regeneration_trait_modifier"
+        {
+            "Passive" "1"
+
+            "OnTurnStarted"
+            {
+                "Conditional"
+                {
+                    "Condition" "(expr(%heal) > 0) && (stat(%TARGET,#health_missing) > 0) && not(isOnState(%TARGET, #POISONED))"
+
+                     "Actions" 
+                    {
+                        "Heal"
+                        {
+                            "Target"        "%TARGET"
+                            "HealAmount"    "expr(%heal)"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName" "HealingFXMega"
+                            "Target" "%TARGET"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

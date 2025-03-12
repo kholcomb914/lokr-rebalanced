@@ -1,0 +1,51 @@
+"regson_eldritch_heal_trait"
+{
+    "AbilityBehavior"       "POSITIVE_EFFECT | PASSIVE"
+    "Icon" "EldritchHeal"
+
+    "AbilitySpecial"
+    {
+
+        "01"
+        {
+            "var_type"                  "FIELD_EXPRESSION"
+            "level"                     "stat(%CASTER, #level)"
+        }
+        "02"
+        {
+            "var_type"                  "FIELD_EXPRESSION"
+            "range"                     "stat(%CASTER, #walkSpeed)"
+        }
+    }
+
+    "Modifiers"
+    {
+        "regson_eldritch_heal_trait_modifier"
+        {
+            "Passive" "1"
+
+            "OnUnitDiedGlobal"
+            {
+                "Conditional"
+                {
+                    "Condition" "matchesGroup(unitGroup(%DEAD), @UnitGroup(BadSide)) && not(isOnState(%DEAD, #NO_SKULL)) && not(isOnState(%DEAD, #IS_CINEMATIC)) && ((hexDistance(unitHex(%DEAD), unitHex(%TARGET)) <= 3) || equal(%INSTIGATOR, %TARGET))"
+
+                    "Actions"
+                    {
+                        "Heal"
+                        {
+                            "Target"        "%TARGET"
+                            "HealAmount"    "stat(%TARGET, #level)"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"    "RegsonHealingFXMega"
+                            "Target"        "%TARGET"
+                        } 
+                    }
+                }
+            }
+        }
+    }
+}

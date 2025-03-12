@@ -1,0 +1,203 @@
+"rebalance_oloch_fire_barrier"
+{
+    "AbilityBehavior"       "UNIT_TARGET | POSITIVE_EFFECT"
+    "AbilityTeamFilter"     "TEAM_FRIENDLY"
+    "AnimationID"           "SpellCastA"
+    "CastFXId"              "OlochFireBarrierCastFXMega"
+    "Icon"                  "FireBarrier"
+    "AbilityCastRange"      "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCooldown"       "3"
+    "AbilityAPCost"         "1"
+
+
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "duration"          "3"
+        }
+
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "damageReduction"   "-1"
+        }
+
+        "03"
+        {
+            "var_type"           "FIELD_FLOAT"
+            "damageRetributed"   "2"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+        "RemoveModifier"
+        {
+            "ModifierTag"    "shield"
+            "Target"         "%TARGET"
+        }
+
+        "RemoveModifier"
+        {
+            "ModifierName"     "modifier_burning"
+            "Target"           "%TARGET"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "fire_barrier_modifier"
+            "Target"         "%TARGET"
+            "Duration"      "%duration"
+        }
+    }
+
+    "Modifiers"
+    {
+        "fire_barrier_modifier"
+        {
+            "Tags"          "shield"
+            "EffectName"    "OlochFireBarrierStatusFXMega"
+            "Icon"          "FireBarrier"
+            "IconPriority"  "50"
+
+            "States"
+            {
+                "CANT_BE_BURNT" "1"
+                "CANT_BE_STUNNED" "1"
+            }
+
+            "OnPreHit"
+            {
+                "Conditional"
+                {
+                    "Condition" "hitConnected(%HIT) && not(hasTags(hitTags(%HIT), #INTERNAL))"
+
+                    "Actions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"              "DAMAGE_PHYSICAL"
+                            "Damage"            "%damageReduction"
+                        }
+
+                        "AddDamage"
+                        {
+                            "Type"              "DAMAGE_TRUE"
+                            "Damage"            "%damageReduction"
+                        }
+
+                        "AddDamage"
+                        {
+                            "Type"              "DAMAGE_ARMOR"
+                            "Damage"            "%damageReduction"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"        "MartyrsInspirationShieldFXMega"
+                            "Target"            "%ATTACKED"
+                        }
+
+                        "ApplyModifier"
+                        {
+                            "ModifierName"      "modifier_fire_barrier_explode"
+                            "Target"            "%TARGET"
+                        }
+                    }
+                }
+            }
+        }
+
+        "modifier_fire_barrier_explode"
+        {
+            "OnPostHit"
+            {
+                "Conditional"
+                {
+                    "Condition" "hasTags(hitTags(%HIT), #MELEE) && not(hasTags(hitTags(%HIT), #REFLECTED) || hasTags(hitTags(%HIT), #ENVIRONMENTAL) || hasTags(hitTags(%HIT), #INTERNAL))"
+                    "Actions"
+                    {
+                        "SetToContext"
+                        {
+                            "Context" "currentContext()"
+                            "Key" "#explodeDelay"
+                            "Value" "0.78"
+                            "Type" "FIELD_FLOAT"
+                        }
+
+                        "StartLogicTick"
+                        {
+                            "Time" "%explodeDelay"
+                            "TickType" "FX "
+                            "Position" "unitPosition(%SOURCE)"
+                        }
+
+                        "Delay"
+                        {
+                            "Time" "%explodeDelay"
+                            "Actions"
+                            {
+                                "AttachEffect"
+                                {
+                                    "EffectName"    "FireballExplosionFXMega"
+                                    "Target"        "unitPosition(%TARGET)"
+                                }
+
+                                "ActOnTargets"
+                                {
+                                    "Target"
+                                    {
+                                        "Center"        "unitPosition(%TARGET)"
+                                        "Radius"        "1"
+                                        "Teams"         "TEAM_ENEMY"
+                                    }
+
+                                    "IteratorName" "#newTarget"
+                                
+                                    "Actions"    
+                                    {
+                                        "Hit"
+                                        {
+                                            "Target"        "%newTarget"
+                                            "EffectName"    "AbyssalBlastHitFXMega" 
+                                            "Tags"          "stringList(#ENVIRONMENTAL, #AOE)"
+
+                                            "InitActions"
+                                            {
+                                                "AddDamage"
+                                                {
+                                                    "Type"              "DAMAGE_PHYSICAL"
+                                                    "Damage"            "%damageRetributed"
+                                                }
+                                                
+                                            }
+                                            "Actions"
+                                            {
+                                               "ApplyModifier"
+                                                {
+                                                    "ModifierName"  "modifier_burning"
+                                                    "Target"        "%HITTARGET"
+                                                    "Duration"      "1"
+                                                    "Refresh"       "1"
+                                                }
+                                           }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                "RemoveModifier"
+                {
+                    "ModifierName"      "modifier_fire_barrier_explode"
+                    "Target"            "%TARGET"
+                }
+            }
+        }
+    }
+}

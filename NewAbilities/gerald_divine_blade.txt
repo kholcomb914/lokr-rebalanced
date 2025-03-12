@@ -1,0 +1,111 @@
+"gerald_divine_blade"
+{
+    "AbilityBehavior"   "MELEE"
+    "AbilityTeamFilter" "TEAM_ENEMY"
+    "AbilityCastRange" "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"   "3"
+    "AbilityAPCost"     "2"
+
+    "AnimationID"   "SpecialAttackC"
+    "CastFXId" "DivineBladeCastFXMega"
+    "Icon" "DivineBlade"
+
+    "AbilitySpecial"
+    {
+        
+        "01" 
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "damage" "floor(4*stat(%CASTER, #attackDamage)/3)"
+        }
+
+        "02" 
+        {
+           "var_type" "FIELD_EXPRESSION"
+            "burnDuration" "2"
+        }
+
+        "03" 
+        {
+           "var_type" "FIELD_EXPRESSION"
+            "extraDamage" "ceil(stat(%CASTER, #attackDamage)/3)"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+        "Hit"
+        {
+            "Target" "%TARGET"
+            "EffectName" "GeraldDivineBladeHitFXMega" 
+            "Tags" "stringList(#MELEE, #TARGETED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_TRUE"
+                    "Damage"        "expr(%damage)"
+                }
+
+                "Conditional"
+                {
+                    "Condition" "isOnState(%TARGET, #IMMOBILIZED)"
+
+                    "Actions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_TRUE"
+                            "Damage"        "expr(%extraDamage)"
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+                }
+            }
+
+            "Actions"
+            {
+                "Knockback" 
+                {
+                    "Target" "%HITTARGET"
+                    "Center" "unitPosition(%HITSOURCE)"
+                    "Strength" "1"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_burning"
+                    "Target"        "%HITTARGET"
+                    "Duration"      "expr(%burnDuration)"
+                    "Refresh"   "1"
+                }
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "4"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "10"  
+                    }
+                }
+            }
+        }
+    }
+}

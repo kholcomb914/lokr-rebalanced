@@ -1,0 +1,127 @@
+"darkknight_impervious"
+{
+    
+    
+    "AbilityBehavior"       "UNIT_TARGET"
+    "AbilityTeamFilter" "TEAM_FRIENDLY"
+
+    "AnimationID"   "SpellCastB"
+    "CastFXId" "DarkKnightImperviouslCastFXMega"
+    "Icon" "ShieldWall"
+
+    "AbilityCastRange" "0"
+    "AbilityCooldown"      "3"
+    "AbilityAPCost"       "1"
+
+     "AbilitySpecial"
+    {
+
+        "01"
+        {
+            "var_type" "FIELD_FLOAT"
+            "armorBonus" "5"
+        }
+
+        "02"
+        {
+            "var_type" "FIELD_FLOAT"
+            "duration" "2"
+        }
+
+        "03"
+        {
+            "var_type"               "FIELD_FLOAT"
+            "damageReduction"               "-2"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+        "RemoveModifier"
+        {
+            "ModifierTag"    "dot"
+            "Target"         "%TARGET"
+        }
+        
+        "GiveArmor"
+        {
+            "Target"                    "%TARGET"
+            "ArmorAmount"               "1000"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"    "darkknight_impervious_modifier_rebalance"
+            "Target"         "%TARGET"
+            
+            "Duration"      "%duration"
+            "Refresh"   "1"
+        }
+
+        "GiveArmor"
+        {
+            "Target" "%TARGET"
+            "ArmorAmount" "%armorBonus"
+        }
+    }
+
+    "Modifiers"
+    {
+        "darkknight_impervious_modifier_rebalance"
+        {
+
+           "EffectName" "DarkKnightImperviousStatusFXMega"
+
+           "OnRemoved"
+           {
+                "GiveArmor"
+                {
+                    "Target" "%TARGET"
+                    "ArmorAmount" "0"
+                }
+           }
+           
+
+            "PropertiesAdd"
+            {
+                "armor_max" "%armorBonus"
+            }
+           
+
+            "OnHitPreProcessDamages"
+            {
+                
+                "AddDamage"
+                {
+                    "Type"              "DAMAGE_PHYSICAL"
+                    "Damage"            "%damageReduction"
+                }
+                
+                "AddDamage"
+                {
+                    "Type"              "DAMAGE_MAGICAL"
+                    "Damage"            "%damageReduction"
+                }
+
+                "AddDamage"
+                {
+                    "Type"              "DAMAGE_TRUE"
+                    "Damage"            "%damageReduction"
+                }
+
+                "AddDamage"
+                {
+                    "Type"              "DAMAGE_ARMOR"
+                    "Damage"            "%damageReduction"
+                }
+
+                "AttachEffect"
+                {
+                    "EffectName"        "MartyrsInspirationShieldFXMega"
+                    "Target"            "%ATTACKED"
+                }
+            }
+        }
+    }
+}
