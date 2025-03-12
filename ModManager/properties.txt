@@ -1,0 +1,4 @@
+mod_active=true
+debug_mode=false
+skip_splash_screen=true
+take_over_ai=False
