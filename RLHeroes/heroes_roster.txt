@@ -1,0 +1,106 @@
+{
+	"legends" : [
+		{
+			"id" : "Gerald"
+		},
+		{
+			"id" : "Asra",
+			"unlockAchievement" : "asra_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "DemonOloch",
+			"unlockAchievement" : "oloch_unlock",
+			"locked" : false
+		},
+		{
+			"id" : "Bruxa",
+			"unlockAchievement" : "bruxa_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "Regson",
+			"unlockAchievement" : "adventure_completed_wasteland",
+			"locked" : true
+		}
+		,
+		{
+			"id" : "Bravebark",
+			"unlockAchievement" : "nodes_exploration",
+			"locked" : true
+		}
+	],
+
+	"companions" : [
+		
+		{
+			"id" : "Ranger"
+		},
+		{
+			"id" : "ArcaneMage"
+		},
+		{
+			"id" : "Necromancer"
+		},
+		{
+			"id" : "Enchantress"
+		},
+		{
+			"id" : "Cleric"
+		},
+		{
+			"id" : "Assassin"
+		},
+		{
+			"id" : "FemaleKnight",
+			"unlockAchievement" : "knight_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "Bombardier",
+			"unlockAchievement" : "bombardier_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "Barbarian",
+			"unlockAchievement" : "barbarian_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "DarkKnight",
+			"unlockAchievement" : "dark_knight_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "OrcCleaver",
+			"unlockAchievement" : "orc_cleaver_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "WitchDoctor",
+			"unlockAchievement" : "witch_doctor_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "Sasquatch",
+			"unlockAchievement" : "sasquatch_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "Tesla",
+			"unlockAchievement" : "zapper_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "Sorceress",
+			"unlockAchievement" : "sorceress_unlock",
+			"locked" : true
+		},
+		{
+			"id" : "SylvanElf",
+			"unlockAchievement" : "adventure_completed_silveroak",
+			"locked" : true
+		}
+	]
+
+}
