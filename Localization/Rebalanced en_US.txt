@@ -1,0 +1,69 @@
+"ACHIEVEMENT_fast_town_brawl_trolls_NAME" = "A Wizard is Sometimes Late"
+"ACHIEVEMENT_fast_town_brawl_trolls_DESC" = "Save Argaleham from the trolls before round {round}."
+
+"COMBAT_MODIFIER_modifier_fire_barrier_TITLE" = "Fire Barrier"
+"COMBAT_MODIFIER_modifier_fire_barrier_DESCRIPTION" = "This unit is immune to <style="debuff">burning</style>, receives <style="buff">{damageReduction} damage</style>, and brings retribution of <style="damage">{damageRetributed} true damage</style> on the attacker."
+
+
+"SKILL_oloch_fire_barrier_NAME" = "Fire Barrier"
+"SKILL_oloch_fire_barrier_DESCRIPTION" = "Casts a Fire Barrier on an ally, which grants damage reduction to all incoming damage and immunity to <style="debuff">burning</style> and <style="debuff">stunned</style>. Against melee attacks, the shield will <style="damage">explode</style>, dealing damage in a radius and applying <style="debuff">burning</style>."
+"SKILL_oloch_fire_barrier_DESCRIPTION_DATA" = "Damage reduction: <style="buff">{damageReduction}</style>\nExplosion damage: <style="damage">{damageRetributed} {icon#damagePhysical}</style>\nDuration: <style="highlight">{duration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"COMBAT_MODIFIER_fire_barrier_modifier_TITLE" = "Fire Barrier"
+"COMBAT_MODIFIER_fire_barrier_modifier_DESCRIPTION" = "This unit is immune to <style="debuff">burning</style> and <style="concept">stunned</style>, receives <style="buff">{damageReduction} damage</style>, and explodes against melee, dealing <style="damage">{damageRetributed} physical damage</style> in a radius."
+
+
+"SKILL_darkknight_impervious_NAME" = "Impervious"
+"SKILL_darkknight_impervious_DESCRIPTION" = "Fully restores armor and gains <style="buff">extra armor</style>, reducing all incoming damage.\nRemoves <style="debuff">burning</style> and <style="debuff">poisoned</style> status."
+"SKILL_darkknight_impervious_DESCRIPTION_DATA" = "Extra armor: <style="buff">+{armorBonus} {icon#statArmor}</style>\nDamage reduction: <style="buff">{damageReduction}</style>\nDuration: <style="highlight">{duration} {icon#turns}</style>\nRange: <style="highlight">SELF</style>"
+
+"SKILL_darkknight_soulstrike_NAME" = "Soulstrike"
+"SKILL_darkknight_soulstrike_DESCRIPTION" = "Lands a cursed strike upon the target, dealing armor-piercing damage and healing himself in the process."
+"SKILL_darkknight_soulstrike_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Gains an attack bonus if the target is killed."
+"SKILL_darkknight_soulstrike_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageTrue}</style>\nHealing: <style="buff">{healthGain} {icon#statHP}</style>\nEPIC attack bonus: +{extraDamage}\nEPIC duration: {duration} {icon#turns}\nRange: <style="highlight">MELEE</style>"
+
+"SKILL_rebalance_sorceress_rotting_curse_NAME" = "Rotting Curse"
+"SKILL_rebalance_sorceress_rotting_curse_DESCRIPTION" = "Binds an enemy unit to the ground, applying <style="concept">rooted</style> and <style="debuff">poisoned</style>."
+"SKILL_rebalance_sorceress_rotting_curse_DESCRIPTION_DATA" = "Rooted duration: <style="highlight">{rootDuration} {icon#turns}</style>\nPoisoned duration: <style="highlight">{poisonDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"SKILL_regson_eldritch_heal_trait_NAME" = "Eldritch Heal"
+"SKILL_regson_eldritch_heal_trait_DESCRIPTION" = "Heals some HP whenever an enemy dies less than {range} hexes away."
+"SKILL_regson_eldritch_heal_trait_DESCRIPTION_DATA" = "Healing: <style="buff">{level} {icon#statHP}</style>"
+
+"SKILL_regson_eldritch_syphon_trait_NAME" = "Eldritch Syphon"
+"SKILL_regson_eldritch_syphon_trait_DESCRIPTION" = "Resists some magic damage. Whenever he is hit with magic damage, enters Eldritch State (used to trigger EPIC effects)."
+"SKILL_regson_eldritch_syphon_trait_DESCRIPTION_DATA" = "Damage reduction: <style="buff">-{level} {icon#damageMagical}</style>\nState duration: <style="highlight">{duration} {icon#turns}</style>"
+
+"SKILL_asra_spider_bite_NAME" = "Spider Bite"
+"SKILL_asra_spider_bite_DESCRIPTION" = "Stabs the target, dealing damage and applying <style="debuff">poisoned</style>."
+"SKILL_asra_spider_bite_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Deals bonus damage and inflicts asleep against <style="debuff">weakened</style> targets."
+"SKILL_asra_spider_bite_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageTrue}</style>\nPoisoned duration: <style="highlight">{duration} {icon#turns}</style>\nEPIC damage: <style="damage">+{extraDamage}</style>\nEPIC asleep duration: <style="highlight">{sleepDuration} {icon#turns}</style>\nRange: <style="highlight">MELEE</style>"
+
+"SKILL_oloch_burning_claw_NAME" = "Burning Claw"
+"SKILL_oloch_burning_claw_DESCRIPTION" = "Strikes in an arc with his fiery hand, damaging the main target and two units beside the target.\nApplies <style="debuff">burning</style> to the main target."
+"SKILL_oloch_burning_claw_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Applies stunned to <style="debuff">weakened</style> targets."
+"SKILL_oloch_burning_claw_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageMagical}</style>\nBurning duration: <style="highlight">{burningDuration} {icon#turns}</style>\nEPIC stunned duration: <style="highlight">{stunDuration} {icon#turns}</style>\nRange: <style="highlight">MELEE</style>"
+
+"SKILL_bruxa_voodoo_doll_NAME" = "Voodoo Doll"
+"SKILL_bruxa_voodoo_doll_DESCRIPTION" = "After the target is chosen, puts a voodoo doll in an empty hex adjacent to her.\nEach hit to the voodoo doll will cause the target to receive the hit's damage plus an additional <style="damage">1 {icon#damageTrue}</style>."
+"SKILL_bruxa_voodoo_doll_DESCRIPTION_DATA" = "Doll duration: <style="highlight">{duration} {icon#turns}</style>\nRange: <style="highlight">GLOBAL</style>"
+"SKILL_bruxa_voodoo_doll_DESCRIPTION_EXTRA" = "<style="extra">Does not apply status modifiers.\nDoes not affect bosses.</style>"
+
+"SKILL_barbarian_regeneration_trait_NAME" = "Regeneration"
+"SKILL_barbarian_regeneration_trait_DESCRIPTION" = "When not <style="debuff">poisoned</style>, the Barbarian regenerates HP at the beginning of his turn."
+"SKILL_barbarian_regeneration_trait_DESCRIPTION_DATA" = "HP regeneration: <style="buff">{healForTooltip} {icon#statHP}</style>"
+
+"SKILL_sorceress_trebuchet_NAME" = "Trebuchet"
+"SKILL_sorceress_trebuchet_DESCRIPTION" = "Launches a huge ball of stone that damages  the target and deals splash damage to all enemies within a {aoeRadius}-hex radius.\nPushes the sorceress back {pushBackHexes} hex and applies <style="concept">rooted</style> to all enemies in the area of effect."
+"SKILL_sorceress_trebuchet_DESCRIPTION_DATA" = "Main damage: <style="damage">{damage} {icon#damagePhysical}</style>\nSplash damage: <style="damage">{splashDamage} {icon#damagePhysical}</style>\nRooted duration: <style="highlight">{rootDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"SKILL_sasquatch_mighty_blow_NAME" = "Mighty Blow"
+"SKILL_sasquatch_mighty_blow_DESCRIPTION" = "Pounds an enemy, dealing damage and applying <style="concept">knockback</style> and <style="concept">stunned</style>."
+"SKILL_sasquatch_mighty_blow_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Enhanced <style="concept">stunned</style> effect on <style="debuff">weakened</style> targets."
+"SKILL_sasquatch_mighty_blow_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damagePhysical}</style>\nStunned duration: <style="concept">{stunDuration} {icon#turns}</style>\nEPIC stunned duration: <style="highlight">{stunDurationExtra} {icon#turns}</style>\nRange: <style="highlight">MELEE</style>"
+
+"SKILL_sasquatch_abominable_chomp_NAME" = "Abominable Chomp"
+"SKILL_sasquatch_abominable_chomp_DESCRIPTION" = "Fiercely bites an enemy, dealing damage and healing himself by the same amount."
+"SKILL_sasquatch_abominable_chomp_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Applies bleeding to <style="debuff">immobilized</style> targets."
+"SKILL_sasquatch_abominable_chomp_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageTrue}</style>\nRange: <style="highlight">MELEE</style>"
+
