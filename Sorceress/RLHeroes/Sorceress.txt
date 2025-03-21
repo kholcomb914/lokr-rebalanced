@@ -1,0 +1,125 @@
+"MinionSorceress" 
+{
+	"UniqueId" "Sorceress"
+	"Model" "HumanSorceress"
+	"MetaExo" "ExoSkeletonHumanSorceress_MetaDataAsset"
+	"Name" "MINION_SORCERESS"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Female|Sorceress|ct_minion|ct_ranged|ct_magic|ct_wisdom|ct_social|UPGRADES_magic|LOCKED"
+	"nextLevelArchetype" "MinionSorceressLvl2"
+	"AttackType" "MAGIC"
+	"Icon" "Asst_Banner_Arcane"
+	"Background" "hero_roster_legend_bg_forest"
+	"PortraitBackgroundColor" "3a9c81"
+	"UnitOnMap" "Asst_Party_Sorceress"
+
+	"stats"
+	{
+
+		"level" "1"
+		"health_max" "5"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" "sorceress_grounded_trait"
+		"100" "magic_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "sorceress_rotting_curse"
+			}
+
+			"2" 
+			{
+				"1" "sorceress_corroding_hex"
+				"2" "sorceress_punishing_hex"
+			}
+
+			"3"
+			{
+				"1" "sorceress_trebuchet"
+				"2"	"sorceress_summon_golem"
+			}
+		}
+
+		"defaultSkill" "stormcloud_sorcerer_hex_blast"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupSorceressSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatSorceress_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatSorceress_death"
+			"useSkill" "krl_va_combatSorceress_action"
+			"startTurn" "krl_va_combatSorceress_turnStart"
+			"promote" "krl_va_combatSorceress_promote"
+			"selectHero" "krl_va_combatSorceress_select"
+			"walk" ""
+		}
+	}
+
+}
+
+
+
+"MinionSorceressLvl2" 
+{
+	"InheritsFrom" "MinionSorceress"
+	"nextLevelArchetype" "MinionSorceressLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+		"health_max" "6"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionSorceressLvl3" 
+{
+	"InheritsFrom" "MinionSorceress"
+
+	"stats"
+	{
+
+		"level" "3"
+		"health_max" "8"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "5" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+}

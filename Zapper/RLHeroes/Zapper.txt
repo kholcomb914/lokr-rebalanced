@@ -1,0 +1,122 @@
+"MinionTesla" 
+{
+	"UniqueId" "Tesla"
+	"Model" "HumanTesla"
+	"MetaExo" "ExoSkeletonHumanTesla_MetaDataAsset"
+	"Name" "MINION_TESLA"
+	"InheritsFrom" "Hero"
+	"nextLevelArchetype" "MinionTeslaLvl2"
+	"cinematicTags" "Heroe|Minion|Male|Tesla|ct_minion|ct_ranged|ct_craft|ct_knowledge|ct_perception|UPGRADES_crafty"
+	"AttackType" "ARTILLERY"
+	"Icon" "Asst_Banner_Bombardier"
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_Tesla"
+	"PortraitBackgroundColor" "cc9629"
+	
+	"stats"
+	{
+
+		"level" "1"
+
+		"health_max" "4"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"baseDamage"  "3"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"10" 		"tesla_shocking_presence"
+		"100" "crafty_endturn_trait"
+
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "tesla_lightning_ball"
+			}
+
+			"2" 
+			{
+				"1" "tesla_chain_lightning"
+				"2" "tesla_thunder_strike"
+			}
+
+			"3"
+			{
+				"1" "tesla_raise_coil"
+				"2" "tesla_magnetic_trap"
+			}
+		}
+
+		"defaultSkill" "tesla_jolt"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupTeslaSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatTesla_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatTesla_death"
+			"useSkill" "krl_va_combatTesla_action"
+			"startTurn" "krl_va_combatTesla_turnStart"
+			"promote" "krl_va_combatTesla_promote"
+			"selectHero" "krl_va_combatTesla_select"
+		}
+	}
+}
+
+"MinionTeslaLvl2" 
+{
+	"InheritsFrom" "MinionTesla"
+	"nextLevelArchetype" "MinionTeslaLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+
+		"health_max" "6"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionTeslaLvl3" 
+{
+	"InheritsFrom" "MinionTesla"
+
+	"stats"
+	{
+
+		"level" "3"
+
+		"health_max" "8"
+		"armor_max" "0"
+		"armor_regen_per_turn" "2"
+
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "5" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+}

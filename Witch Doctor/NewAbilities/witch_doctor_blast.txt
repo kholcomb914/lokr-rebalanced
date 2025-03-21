@@ -1,0 +1,117 @@
+"witch_doctor_blast"
+{
+    
+    
+    "AbilityBehavior"   "UNIT_TARGET"
+    "AbilityTeamFilter" "TEAM_ENEMY"
+    "AbilityCastRange" "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCastMinRange" "stat(%CASTER, #rangedAttackMinRange)" 
+    "AbilityCooldown"   "0"
+    "AbilityAPCost"     "stat(%CASTER, #attackCostAP)"
+    "AnimationID"   "SpecialAttack"
+    "CastFXId" "WitchDoctorWildBlastCastFXMega"
+    "Icon" "ShamanBlast" 
+
+   
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"        
+            "fixedDamage"  "floor(stat(%CASTER, #attackDamage)/2)+1"
+        }
+        "02"
+        {
+            "var_type" "FIELD_FLOAT"        
+            "epicHeal"  "1"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+        "TrackingProjectile"
+        {
+            "Target"                "%TARGET"
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+            "TargetPos"             "unitPosition(%TARGET, #Chest)"
+            "Model"                 "WitchDoctorWildBlastProjectile"
+
+            "Params" 
+            {
+                "damage" 
+                { 
+                    "type" "FIELD_FLOAT"
+                    
+                    "value" "expr(%fixedDamage)"
+                }
+            }
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "Hit"
+        {
+            "Target" "%TARGET"
+            "EffectName" "WitchDoctorWildBlastHitFXMega" 
+            "Tags" "stringList(#PROJECTILE, #TARGETED, #MAGICAL)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_MAGICAL"
+                    "Damage"        "%damage"
+                }
+            }
+            "Actions"
+            {
+                "Conditional"
+                {
+                    "Condition"     "isOnState(%TARGET, #DEAD) && not(isOnState(%TARGET, #PROP))"
+
+                    "Actions" 
+                    {
+                        "Heal"
+                        {
+                            "Target"        "%SOURCE"
+                            "HealAmount"    "%epicHeal"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"    "HealingFXMega"
+                            "Target"        "%SOURCE"
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "2.3"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "expr(%AbilityCastRange)"  
+                    }
+                }
+            }
+        }
+    }
+}

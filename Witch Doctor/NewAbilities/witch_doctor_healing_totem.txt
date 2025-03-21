@@ -1,0 +1,125 @@
+"witch_doctor_healing_totem"
+{
+    "AbilityBehavior"               "POINT_TARGET | POSITIVE_EFFECT | NEEDS_CLEAR_TERRAIN"
+    "AbilityCastRange"              "3"
+    "AbilityCooldown"               "3"
+    "AbilityPrewarmCooldown"        "1"
+    "AbilityAPCost"                 "2"
+    "AnimationID"                   "SpellCastB"
+    "CastFXId"                      "WitchDoctorSummonTotemCastFXMega"
+    "Icon"                          "HealingTotem"
+
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_FLOAT"
+            "duration"              "3"
+        }
+
+        "02"
+        {
+            "var_type"              "FIELD_FLOAT"
+            "hpToRestore"           "2"
+        }
+    }
+
+     "OnAbilityAction"
+    { 
+        "SpawnUnit"
+        {
+            "UnitName"                  "#HealingTotem"
+            "Position"                  "%TARGET"
+            "UnitGroup"                 "unitGroup(%CASTER)"
+            "IsAI"                      "0"
+            "AddToInitiativeOrder"      "0"
+
+            "OnSpawn"
+            {
+                "PlaySound"
+                {
+                    "Sound" "#krl_sfx_combatWitchDoctor_totemSpawn"
+                }
+
+                "PlayActivityAnimation"
+                {
+                    "Target"            "%UNIT"
+                    "Animation"         "Spawn"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"      "modifier_witch_doctor_healing_totem_rebalance"
+                    "Target"            "%UNIT"
+                    "Duration"          "%duration"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"      "modifier_witch_doctor_healing_totem_vfx_rebalance"
+                    "Target"            "%UNIT"
+                }
+            }
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_witch_doctor_healing_totem_vfx_rebalance"
+        {
+            "EffectName" "HealingFloorFXMega"
+        }
+
+        "modifier_witch_doctor_healing_totem_rebalance"
+        {
+            "OnTurnFinishedGlobal"
+            {
+                "Conditional" 
+                {
+                    "Condition" "matchesTeam(unitGroup(%TARGET), unitGroup(%UNIT), @TeamFilter(TEAM_FRIENDLY)) && safeEquals(hexDistance(unitHex(%TARGET), unitHex(%UNIT)), 1)"
+
+                    "Actions"
+                    {
+                        "Heal"
+                        {
+                            "Target"            "%UNIT"
+                            "HealAmount"        "%hpToRestore"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"        "HealingFXMega"
+                            "Target"            "%UNIT"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"        "HealingFXMega"
+                            "Target"            "%TARGET"
+                        }
+
+                        "RemoveModifier"
+                        {
+                            "ModifierName"      "modifier_witch_doctor_healing_totem_vfx_rebalance"
+                            "Target"            "%TARGET"
+                        }
+
+                        "ApplyModifier"
+                        {
+                            "ModifierName"      "modifier_witch_doctor_healing_totem_vfx_rebalance"
+                            "Target"            "%TARGET"
+                        }
+                    }
+                }
+            }
+
+            "OnRemoved"
+            {
+                "KillUnit"
+                {
+                    "Target"        "%TARGET"
+                }
+            }
+        }
+    }
+}

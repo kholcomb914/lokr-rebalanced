@@ -1,0 +1,88 @@
+"tesla_coil_attack"
+{
+    "AbilityBehavior"           "UNIT_TARGET"
+    "AbilityTeamFilter"         "TEAM_ENEMY"
+    "AbilityCastRange"          "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCooldown"           "1"
+    "AbilityAPCost"             "1"
+
+    "AnimationID"               "Attack"
+    "CastFXId"                  "TeslaCoilCastFXMega"
+    "Icon"                      "Jolt"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "MinDamage"         "3"
+        }
+
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "MaxDamage"         "3"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "PlaySound"
+        {
+            "Sound" "#krl_sfx_teslaCombat_joltProjectile"
+        }
+                
+        "TrackingProjectile"
+        {
+            "Target"                "%TARGET"
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+            "TargetPos"             "unitPosition(%TARGET, #Chest)"
+            "Model"                 "ChainLightningProjectile"
+
+            "Params" 
+            {
+                "damage" 
+                { 
+                    "type"          "FIELD_FLOAT"
+                    "value"         "randomI(%MinDamage, %MaxDamage)"
+                }
+            }
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "Hit"
+        {
+            "Target"                "%TARGET"
+            "EffectName"            "TeslaJoiltHitFXMega" 
+            "Tags"                  "stringList(#PROJECTILE, #TARGETED, #MAGICAL)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_MAGICAL"
+                    "Damage"        "%damage"
+                }
+            }
+        }
+    }
+
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight"                    "20"
+            "Considerations"
+            {
+                "Priorizacion Random"
+                {
+                    "Curve" "Linear|0.01|1|0.99|0"
+                    "Consideration" "Random"
+                }
+            }
+        }
+    }
+}

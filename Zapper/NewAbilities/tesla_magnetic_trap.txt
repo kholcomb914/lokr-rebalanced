@@ -1,0 +1,179 @@
+"tesla_magnetic_trap"
+{
+    "AbilityBehavior"           "POINT_TARGET | AOE | NEEDS_CLEAR_TERRAIN"
+    "AbilityCastRange"          "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCastMinRange"       "1" 
+    "AbilityCooldown"           "4"
+    "AbilityAPCost"             "2"
+    "AbilityAOETeamFilter"      "TEAM_ENEMY"
+    "AbilityAOEKind"            "RANGE_CIRCLE"
+    "AbilityAOECenterOnCaster"  "0"
+    "AbilityAOEAffectsCaster"   "0"
+    "AbilityAOERange"           "%aoeRadius"
+
+    "AnimationID"               "SummonTrinket"
+    "Icon"                      "MagneticTrap" 
+    "CastFXId"                  "TeslaRaiseCoilCastFXMega"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "aoeRadius"         "2"
+        }
+
+        "02"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "rootDuration"      "2"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "PlaySound"
+        {
+            "Sound" "#krl_sfx_teslaCombat_magneticTrapTravel"
+        }
+
+        "TrackingProjectile"
+        {
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+            "TargetPos"             "%TARGET"
+            "Model"                 "MagneticTrapProjectile"
+
+            "Params" 
+            {
+                "aoeRadius" 
+                { 
+                    "type"          "FIELD_FLOAT"
+                    "value"         "%aoeRadius"
+                }
+
+                "rootDuration" 
+                { 
+                    "type"          "FIELD_FLOAT"
+                    "value"         "%rootDuration"
+                }
+            }
+        }
+    }
+
+    "OnProjectileDestinationReached" 
+    {
+        "StopSound"
+        {
+            "Sound" "#krl_sfx_teslaCombat_magneticTrapTravel"
+        }
+
+        "StartLogicTick"
+        {
+            "Time"      "3"
+            "TickType"  "PriorityCenter"
+            "Position"  "%TARGET"
+        }
+
+        "SpawnUnit"
+        {
+            "UnitName"                  "#TeslaMagneticTrap"
+            "Position"                  "%TARGET"
+            "UnitGroup"                 "unitGroup(%CASTER)"
+            "IsAI"                      "1"
+            "AddToInitiativeOrder"      "0"
+
+            "OnSpawn"
+            {
+                "PlayActivityAnimation"
+                {
+                    "Target"                    "%UNIT"
+                    "Animation"                 "MagnetSummon"
+                }
+
+                "Delay"
+                {
+                    "Time" "0.7"
+                    "Actions"
+                    {
+                        "KillUnit"
+                        {
+                            "Target"        "%UNIT"
+                        }
+
+                        "Delay"
+                        {
+                            "Time" "1"
+                            "Actions"
+                            {
+                                "AttachEffect"
+                                {
+                                    "EffectName"            "MagneticTrapHitFXMega"
+                                    "Target"                "%TARGET"
+                                }
+
+                                "ActOnTargets"
+                                {
+                                    "Target"
+                                    {
+                                        "Center"            "%TARGET"
+                                        "Radius"            "%aoeRadius"
+                                        "Teams"             "TEAM_ENEMY"
+                                    }
+
+                                    "IteratorName"          "#newTarget"
+                                    "IteratorIndexName"     "#targetIndex"
+                                
+                                    "Actions"
+                                    {
+                                        "Delay"
+                                        {
+                                            "Time"          "%targetIndex * 0.2"
+
+                                            "Actions"
+                                            {
+                                                "Hit"
+                                                {
+                                                    "Target"                "%newTarget"
+                                                    "Tags"                  "stringList(#AOE)"
+
+                                                    "InitActions"
+                                                    {
+                                                    }
+
+                                                    "Actions"
+                                                    {
+                                                        "Conditional"
+                                                        {
+                                                            "Condition"             "not(safeEquals(hexDistance(unitHex(%newTarget), positionHex(%TARGET)), 1))"
+                                                            "Actions" 
+                                                            {
+                                                                "Knockback" 
+                                                                {
+                                                                    "Target"        "%newTarget"
+                                                                    "Center"        "hexPosition(hexNeighbour(unitHex(%newTarget), positionHex(%TARGET), 3))"
+                                                                    "Strength"      "1"
+                                                                }
+                                                            }
+                                                        }
+
+                                                        "ApplyModifier"
+                                                        {
+                                                            "ModifierName"  "modifier_rooted"
+                                                            "Target"        "%newTarget"
+                                                            "Duration"      "%rootDuration"
+                                                            "Refresh"       "1"
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

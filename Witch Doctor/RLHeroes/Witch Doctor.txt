@@ -1,0 +1,124 @@
+"MinionWitchDoctor" 
+{
+	"UniqueId" "WitchDoctor"
+	"Model" "RenegadeOrcShaman"
+	"MetaExo" "ExoSkeletonRenegadeOrcShaman_MetaDataAsset"
+	"Name" "MINION_WITCH_DOCTOR"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Male|WitchDoctor|ct_minion|ct_ranged|ct_magic|ct_wisdom|ct_knowledge|UPGRADES_magic|LOCKED"
+	"nextLevelArchetype" "MinionWitchDoctorLvl2"
+	"AttackType" "MAGIC"
+	"Icon" "Asst_Banner_Arcane"
+	"Background" "hero_roster_legend_bg_forest"
+	"PortraitBackgroundColor" "3a9c81"
+	"UnitOnMap" "Asst_Party_RenegadeOrcShaman"
+
+	"stats"
+	{
+
+		"level" "1"
+		"health_max" "3"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "3"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" "shamanic_focus_trait"
+		"100" "magic_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "witch_doctor_healing"
+			}
+
+			"2" 
+			{
+				"1" "telekinesis"
+				"2" "witch_doctor_tainted_healing"
+			}
+
+			"3"
+			{
+				"1" "witch_doctor_ring_of_healing"
+				"2" "witch_doctor_healing_totem"
+			}
+		}
+
+		"defaultSkill" "witch_doctor_blast"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupWitchDoctorSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatWitchDoctor_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatWitchDoctor_death"
+			"useSkill" "krl_va_combatWitchDoctor_action"
+			"startTurn" "krl_va_combatWitchDoctor_turnStart"
+			"promote" "krl_va_combatWitchDoctor_promote"
+			"selectHero" "krl_va_combatWitchDoctor_select"
+		}
+	}
+
+}
+
+
+
+"MinionWitchDoctorLvl2" 
+{
+	"InheritsFrom" "MinionWitchDoctor"
+	"nextLevelArchetype" "MinionWitchDoctorLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+		"health_max" "4"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "5" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionWitchDoctorLvl3" 
+{
+	"InheritsFrom" "MinionWitchDoctor"
+
+	"stats"
+	{
+
+		"level" "3"
+		"health_max" "5"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "6" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+}

@@ -1,0 +1,75 @@
+"tesla_shocking_presence"
+{
+    "AbilityBehavior"       "PASSIVE"
+    "Icon" "ShockingPresence"
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"      "FIELD_FLOAT"
+            "aoeRadius"     "1"
+        }
+
+        "02"
+        {
+            "var_type"      "FIELD_EXPRESSION"
+            "damage"        "stat(%CASTER, #level)"
+        }
+
+        "03"
+        {
+            "var_type"      "FIELD_EXPRESSION"
+            "damageForUse"        "stat(%TARGET, #level)"
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_tesla_shocking_presence"
+        {
+            "Passive" "1"
+
+            "OnTurnFinished"
+            {
+                "ActOnTargets"
+                {
+                    "Target"
+                    {
+                        "Center"                "%TARGET"
+                        "Radius"                "%aoeRadius"
+                        "Teams"                 "TEAM_ENEMY"
+                        "CustomFilter" "customUnitFilter(#theUnit, not(isOnState(%theUnit, #NO_SKULL)))"
+                    }
+
+                    "IteratorName"          "#newTarget"
+                
+                    "Actions"    
+                    {
+                        "Hit"
+                        {
+                            "Target"            "%newTarget"
+                            "EffectName"        "ShockingPresenceShockFXMega" 
+                            "Tags"              "stringList(#AOE)"
+
+                            "InitActions"
+                            {
+                                "AddDamage"
+                                {
+                                    "Type"          "DAMAGE_TRUE"
+                                    "Damage"        "expr(%damageForUse)"
+                                }
+                            }
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"            "ShockingPresenceTeslaFXMega"
+                            "Target"                "%TARGET"
+                        } 
+                    }
+                }
+            }
+        }
+    }
+}
+

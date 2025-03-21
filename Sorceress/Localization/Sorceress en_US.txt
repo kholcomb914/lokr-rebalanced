@@ -1,0 +1,12 @@
+"SKILL_rebalance_sorceress_rotting_curse_NAME" = "Rotting Curse"
+"SKILL_rebalance_sorceress_rotting_curse_DESCRIPTION" = "Binds an enemy unit to the ground, applying <style="concept">rooted</style> and <style="debuff">poisoned</style>."
+"SKILL_rebalance_sorceress_rotting_curse_DESCRIPTION_DATA" = "Rooted duration: <style="highlight">{rootDuration} {icon#turns}</style>\nPoisoned duration: <style="highlight">{poisonDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"SKILL_stormcloud_sorcerer_hex_blast_NAME" = "Cursed Blast"
+"SKILL_stormcloud_sorcerer_hex_blast_DESCRIPTION" = "Casts a magic bolt that damages and <style="debuff">curses</style> its target, increasing the damage received from all attacks (cumulative)."
+"SKILL_stormcloud_sorcerer_hex_blast_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Doubles the curse duration against <style="concept">stunned</style> units."
+"SKILL_stormcloud_sorcerer_hex_blast_DESCRIPTION_DATA" = "Damage: <style="damage">{MinRangedDmg} {icon#damageMagical}</style>\nCurse bonus damage: <style="damage">+{extraDamagePerHit}</style>\nCurse duration: <style="debuff">{duration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"SKILL_sorceress_trebuchet_NAME" = "Trebuchet"
+"SKILL_sorceress_trebuchet_DESCRIPTION" = "Launches a huge ball of stone that damages the target and all enemies within a {aoeRadius}-hex radius.\nPushes the sorceress back {pushBackHexes} hex and applies <style="concept">stunned</style> to the main target."
+"SKILL_sorceress_trebuchet_DESCRIPTION_DATA" = "Main damage: <style="damage">{damage} {icon#damagePhysical}</style>\nSplash damage: <style="damage">{splashDamage} {icon#damagePhysical}</style>\nStunned duration: <style="highlight">{rootDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"

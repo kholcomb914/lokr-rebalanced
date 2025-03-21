@@ -1,0 +1,71 @@
+"tesla_raise_coil"
+{
+    "AbilityBehavior"           "POINT_TARGET | POSITIVE_EFFECT | NEEDS_CLEAR_TERRAIN"
+    "AbilityCastRange"          "4"
+    "AbilityCooldown"           "2"
+    "AbilityAPCost"             "1"
+
+    "AnimationID"               "SummonCoil"
+    "Icon"                      "RaiseCoil"
+    "CastFXId"                  "TeslaRaiseCoilCastFXMega"
+
+    "AbilitySpecial"
+    {
+    }
+
+    "OnAbilityAction"
+    {
+        "TrackingProjectile"
+        {
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+            "TargetPos"             "%TARGET"
+            "Model"                 "TeslaCoilProjectile"
+
+            "Params" 
+            {
+            }
+        }
+    }
+
+    "OnProjectileDestinationReached" 
+    {
+        "SpawnUnit"
+        {
+            "UnitName"                  "#TeslaCoil"
+            "Position"                  "%TARGET"
+            "UnitGroup"                 "unitGroup(%CASTER)"
+            "IsAI"                      "1"
+            "AddToInitiativeOrder"      "0"
+
+            "OnSpawn"
+            {
+                "PlayActivityAnimation"
+                {
+                    "Target"                    "%UNIT"
+                    "Animation"                 "Spawn"
+                }
+
+                "AttachEffect"
+                {
+                    "EffectName"                "TeslaCoilSummonFXMega"
+                    "Target"                    "%UNIT"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_tesla_coil_idle_vfx"
+                    "Target"        "%UNIT"
+                }
+            }
+        }
+    }
+
+    "Modifiers"
+    {
+        "modifier_tesla_coil_idle_vfx"
+        {
+            "Passive" "1"
+            "EffectName" "TeslaCoilIdleFXMega"
+        }
+    }
+}

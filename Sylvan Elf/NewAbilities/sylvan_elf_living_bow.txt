@@ -1,0 +1,67 @@
+"sylvan_elf_living_bow"
+{
+    "AbilityBehavior"           "UNIT_TARGET"
+    "AbilityTeamFilter"         "TEAM_ENEMY"
+    
+    "AnimationID"               "BowAttack"
+    "CastFXId"                  "SylvanElfLivingBowCastFXMega"
+    "Icon"                      "LivingBow" 
+
+    "AbilityCastRange"          "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCastMinRange"       "stat(%CASTER, #rangedAttackMinRange)"  
+    "AbilityCooldown"           "0"
+    "AbilityAPCost"             "1"
+   
+    "AbilitySpecial" 
+    {
+        "01"
+        {
+            "var_type"          "FIELD_EXPRESSION"
+            "damage"            "stat(%CASTER, #attackDamage)-1"
+        }
+        "20"
+        {
+            "var_type" "FIELD_STRING"
+            "iconDamageType"  "damageMagical"
+        }
+    }
+
+    "OnAbilityAction" 
+    {
+        "TrackingProjectile"
+        {
+            "Target"                "%TARGET"
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+            "TargetPos"             "unitPosition(%TARGET, #Chest)"
+            "Model"                 "SylvanElfLivingBocProjectile"
+
+            "Params" 
+            {
+                "damage" 
+                {
+                    "type"          "FIELD_FLOAT" 
+                    "value"         "expr(%damage)"
+                }
+            }
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "Hit"
+        {
+            "Target"                "%TARGET"
+            "EffectName"            "SylvanElfLivingBowHitFXMega" 
+            "Tags"                  "stringList(#PROJECTILE, #TARGETED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_MAGICAL"
+                    "Damage"        "%damage"
+                }
+            }
+        }
+    }
+}

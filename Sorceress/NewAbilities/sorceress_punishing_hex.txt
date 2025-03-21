@@ -1,0 +1,158 @@
+"sorceress_punishing_hex"
+{
+    "AbilityBehavior"               "UNIT_TARGET"
+    "AbilityTeamFilter"             "TEAM_ENEMY"
+    "AbilityCustomTargetFilter"     "isOnState(%UNIT, #WEAKENED)"
+    "AbilityCastRange"              "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCooldown"               "1"
+    "AbilityAPCost"                 "1"
+
+    "AnimationID"                   "Attack"
+    "Icon"                          "PunishingHex"
+    "CastFXId"                      "SorceressHexCastFXMega"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type" "FIELD_FLOAT"
+            "damageMultiplier"  "stat(%CASTER, #level)"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "AttachEffect"
+        {
+            "EffectName"            "SorceressPunishingHexHitFXMega"
+            "Target"                "%TARGET"
+        }
+
+        "Delay"
+        {
+            "Time"          "1"
+            "Actions"
+            {
+                "Hit"
+                {
+                    "Target"                "%TARGET"
+                    "Tags"                  "stringList(#RAY, #MAGICAL)"
+
+                    "InitActions"
+                    {
+                        "Conditional"
+                        {
+                            "Condition" "hasModifier(%HITTARGET, #modifier_new_poison)"
+
+                            "Actions" 
+                            {
+                                "AddDamage"
+                                {
+                                    "Type"          "DAMAGE_TRUE"
+                                    "Damage"        "4"
+                                }
+
+                                "SetToContext"
+                                {
+                                    "Context"               "hitContext(%HITEXECUTION)"
+                                    "Key"                   "#poisoned"
+                                    "Value"                 "1"
+                                    "Type"                  "FIELD_INTEGER"
+                                }
+                            }
+                        }
+
+                        "Conditional"
+                        {
+                            "Condition" "hasModifier(%HITTARGET, #modifier_burning)"
+
+                            "Actions" 
+                            {
+                                "AddDamage"
+                                {
+                                    "Type"          "DAMAGE_TRUE"
+                                    "Damage"        "4"
+                                }
+
+                                "SetToContext"
+                                {
+                                    "Context"               "hitContext(%HITEXECUTION)"
+                                    "Key"                   "#burnt"
+                                    "Value"                 "1"
+                                    "Type"                  "FIELD_INTEGER"
+                                }
+                            }
+                        }
+
+                        "Conditional"
+                        {
+                            "Condition" "hasModifier(%HITTARGET, #modifier_new_bleeding)"
+
+                            "Actions" 
+                            {
+                                "AddDamage"
+                                {
+                                    "Type"          "DAMAGE_TRUE"
+                                    "Damage"        "8"
+                                }
+
+                                "SetToContext"
+                                {
+                                    "Context"               "hitContext(%HITEXECUTION)"
+                                    "Key"                   "#bleeding"
+                                    "Value"                 "1"
+                                    "Type"                  "FIELD_INTEGER"
+                                }
+                            }
+                        }
+                    }
+
+                    "Actions"
+                    {
+                        "Conditional"
+                        {
+                            "Condition" "wrapContext(hitContext(%HITEXECUTION), %poisoned)"
+
+                            "Actions" 
+                            {
+                                "AttachEffect"
+                                {
+                                    "EffectName"    "RicochetHitFXMega"
+                                    "Target"        "%HITTARGET"
+                                }
+                            }
+                        }
+
+                        "Conditional"
+                        {
+                            "Condition" "wrapContext(hitContext(%HITEXECUTION), %burnt)"
+
+                            "Actions" 
+                            {
+                                "AttachEffect"
+                                {
+                                    "EffectName"    "FireballHitFXMega"
+                                    "Target"        "%HITTARGET"
+                                }
+                            }
+                        }
+
+                        "Conditional"
+                        {
+                            "Condition" "wrapContext(hitContext(%HITEXECUTION), %bleeding)"
+
+                            "Actions" 
+                            {
+                                "AttachEffect"
+                                {
+                                    "EffectName"    "RuptureHitFXMega"
+                                    "Target"        "%HITTARGET"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

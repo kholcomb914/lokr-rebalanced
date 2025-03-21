@@ -1,0 +1,114 @@
+"MinionSylvanElf" 
+{
+	"UniqueId" "SylvanElf"
+	"Model" "SylvanElf"
+	"MetaExo" "ExoSkeletonHumanSylvanElf_MetaDataAsset"
+	"Name" "MINION_SYLVANELF"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Male|SylvanElf|ct_minion|ct_ranged|ct_athletics|ct_perception|ct_social|UPGRADES_athletic"
+	"nextLevelArchetype" "MinionSylvanElfLvl2"
+	"AttackType" "RANGED"
+	"Icon" "Asst_Banner_Ranger"
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_SylvanElf"
+	"PortraitBackgroundColor" "7d8f28"
+
+	"stats"
+	{
+		"level" "1"
+
+		"health_max" "5"
+		"armor_max" "2"
+		"armor_regen_per_turn" "1"
+
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "2"
+		"evasion" "0.3" 
+		
+		"walkSpeed" "3"
+	}
+
+	"skills"
+	{
+		"100" 		"agility_trait"
+		"101"     	"dodge_trait"
+		
+		"102" 		"athletics_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "sylvan_elf_living_bow"
+			}
+
+			"2" 
+			{
+				"1" "sylvan_elf_sylvan_volley"
+				"2" "sylvan_elf_spear_rush"
+			}
+
+			"3"
+			{
+				"1" "sylvan_elf_woodland_stride"
+				"2" "sylvan_elf_skirmish"
+			}
+		}
+
+		"defaultSkill" "sylvan_elf_thrust"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupSylvanElfSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatSylvanElf_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatSylvanElf_death"
+			"useSkill" "krl_va_combatSylvanElf_action"
+			"startTurn" "krl_va_combatSylvanElf_turnStart"
+			"promote" "krl_va_combatSylvanElf_promote"
+			"selectHero" "krl_va_combatSylvanElf_select"
+		}
+	}
+}
+
+
+"MinionSylvanElfLvl2" 
+{
+	"InheritsFrom" "MinionSylvanElf"
+	"nextLevelArchetype" "MinionSylvanElfLvl3"
+
+	"stats"
+	{
+		"level" "2"
+
+		"health_max" "6"
+		"armor_max" "3"
+		"armor_regen_per_turn" "2"
+
+		"baseDamage"  "5"
+
+	}
+}
+
+"MinionSylvanElfLvl3" 
+{
+	"InheritsFrom" "MinionSylvanElf"
+
+	"stats"
+	{
+		"level" "3"
+
+		"health_max" "8"
+		"armor_max" "4"
+		"armor_regen_per_turn" "3"
+
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "4" 
+	}
+}
