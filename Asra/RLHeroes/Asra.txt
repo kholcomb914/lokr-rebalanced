@@ -1,0 +1,131 @@
+"RLHumanAsraDagerfallLvl1" 
+{
+	"UniqueId" "Asra"
+	"Model" "HumanAsra"
+	"MetaExo" "ExoSkeletonHumanAsra_MetaDataAsset"
+	"Name" "ASRA_DAGERFALL"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Legend|DarkLegend|Asra|VeznanFaction|Female|ct_legend|ct_ranged|ct_athletics|ct_perception|ct_stealth|ct_dark||UPGRADES_athletic"
+	"Background" "hero_roster_legend_bg_forest"
+	"Icon" "Asst_Banner_Asra"
+	"AttackType" "RANGED"
+	"UnitOnMap" "Asst_Party_Azra"
+	"PortraitBackgroundColor" "4d5380"
+	"nextLevelArchetype" "RLHumanAsraDagerfallLvl2"
+
+	"stats"
+	{
+
+		"level" "1"
+			
+		"health_max" "4"
+		"armor_max" "2"
+		"armor_regen_per_turn" "0"
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		"evasion" "0.25" 
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"10" "dodge_trait"
+		"11" "asra_shield_of_shadows_trait"
+
+		"100" "athletics_endturn_trait"
+		}
+
+		"skillProgression"
+		{
+			"1" 
+			{
+				"1" "asra_onyx_arrows"
+			}
+
+			"2" 
+			{
+				"1" "asra_spider_bite"
+				"2" "asra_shiv"
+				"3" "asra_hit_and_run"
+			}
+
+			"3"
+			{
+				"1" "asra_shadow_strike"
+				"2" "asra_shadows_lullaby"
+				"3" "asra_spider_stance"
+			}
+		}
+
+		"defaultSkill" "arrow_of_sorrow"
+
+		"states"
+		{
+			"LEGEND" "1"
+		}
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupAsraSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatAsra_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatAsra_death"
+			"useSkill" "krl_va_combatAsra_action"
+			"startTurn" "krl_va_combatAsra_turnStart"
+			"promote" "krl_va_combatAsra_promote"
+			"victory" "krl_va_combatAsra_victory"
+			"selectHero" "krl_va_combatAsra_select"
+		}
+	}
+}
+
+"RLHumanAsraDagerfallLvl2" 
+{
+	"InheritsFrom" "RLHumanAsraDagerfallLvl1"
+	"nextLevelArchetype" "RLHumanAsraDagerfallLvl3"
+
+	"stats"
+	{
+		"level" "2"
+			
+		"health_max" "6"
+		"armor_max" "2"
+		"armor_regen_per_turn" "0"
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		"evasion" "0.25" 
+		
+		"walkSpeed" "3"
+	}
+}
+
+"RLHumanAsraDagerfallLvl3" 
+{
+	"InheritsFrom" "RLHumanAsraDagerfallLvl1"
+
+	"stats"
+	{
+		"level" "3"
+			
+		"health_max" "8"
+		"armor_max" "3"
+		"armor_regen_per_turn" "0"
+		"baseDamage"  "7"
+
+		"rangedAttackRange" "5" 
+		"rangedAttackMinRange" "2"
+		
+		"evasion" "0.25" 
+		
+		"walkSpeed" "3"
+	}
+}

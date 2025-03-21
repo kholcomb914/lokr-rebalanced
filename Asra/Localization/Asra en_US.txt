@@ -1,0 +1,5 @@
+"SKILL_asra_spider_bite_NAME" = "Spider Bite"
+"SKILL_asra_spider_bite_DESCRIPTION" = "Stabs the target, dealing damage and applying <style="debuff">poisoned</style>."
+"SKILL_asra_spider_bite_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Deals bonus damage and inflicts asleep against <style="debuff">weakened</style> targets."
+"SKILL_asra_spider_bite_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageTrue}</style>\nPoisoned duration: <style="highlight">{duration} {icon#turns}</style>\nEPIC damage: <style="damage">+{extraDamage}</style>\nEPIC asleep duration: <style="highlight">{sleepDuration} {icon#turns}</style>\nRange: <style="highlight">MELEE</style>"
+"SKILL_asra_spider_bite_DESCRIPTION_EXTRA" = "<style="extra">Asra may use her remaining movement allowance after using this skill</style>."
