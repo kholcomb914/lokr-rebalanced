@@ -1,0 +1,93 @@
+"regson_blood_veil"
+{
+    "AbilityBehavior"       "UNIT_TARGET | POSITIVE_EFFECT | DOESNT_CONSUME_MOVE | FAKE_ACTION"
+    "AbilityTeamFilter"     "TEAM_FRIENDLY"
+
+    "AnimationID"           "SpellCastA"
+    "CastFXId"              "RegsonBloodVeilCastFXMega"
+    "Icon"                  "BloodVeil"
+
+    "AbilityCastRange"      "0"
+    "AbilityCooldown"       "3"
+    "AbilityAPCost"         "0"
+
+    "AbilityCanExecute"     "stat(%SOURCE, #health) > 3"
+
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "healthSpent"       "3"
+        }
+        "02"
+        {
+            "var_type"          "FIELD_EXPRESSION"
+            "healthRequirement"       "(%healthSpent)+1"
+        }
+    }
+
+    "OnAbilityAction"
+    {   
+        "AttachEffect"
+        {
+            "EffectName"                "RuptureHitFXMega"
+            "Target"                    "%CASTER"
+        }
+
+        "RemoveHealth"
+        {
+            "Target"                    "%SOURCE"
+            "HealthToRemove"            "%healthSpent"
+        }
+
+        "RemoveModifier"
+        {
+            "ModifierTag"               "shield"
+            "Target"                    "%TARGET"
+        }
+
+        "ApplyModifier"
+        {
+            "ModifierName"              "regson_blood_veil_modifier"
+            "Target"                    "%TARGET"
+        }
+    }
+
+    "Modifiers"
+    {
+        "regson_blood_veil_modifier"
+        {
+            "Tags"            "shield"
+            "EffectName"      "RegsonBloodVeilStatusFXMega"
+            "Icon"            "ShieldOfShadows"
+            "IconPriority"    "50"
+
+            "OnPreHit"
+            {
+                "Conditional"
+                {
+                    "Condition" "hitConnected(%HIT) && not(hasTags(hitTags(%HIT), #CANTBESHIELDED) || hasTags(hitTags(%HIT), #INTERNAL))"
+
+                    "Actions" 
+                    {
+                        "PlaySound"
+                        {
+                            "Sound" "#krl_sfx_regsonCombat_bloodVeilTakeHit"
+                        }
+
+                        "CancelHit"
+                        {
+                        }
+
+                        "RemoveModifier"
+                        {
+                            "ModifierName"      "regson_blood_veil_modifier"
+                            "Target"            "%TARGET"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

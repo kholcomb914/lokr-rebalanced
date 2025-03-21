@@ -1,0 +1,131 @@
+"RLRegsonLvl1" 
+{
+	"UniqueId" "Regson"
+	"Model" "Regson"
+	"MetaExo" "ExoSkeletonRegson_MetaDataAsset"
+	"Name" "REGSON"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Legend|NeutralLegend|Regson|NeutralFaction|Male|ct_legend|ct_athletics|ct_perception|ct_wisdom|UPGRADES_athletic"
+	"nextLevelArchetype" "RLRegsonLvl2"
+	"AttackType" "PHYSICAL"
+	"Icon" "Asst_Banner_Asra"
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_Regson"
+	"PortraitBackgroundColor" "5a4424"
+
+	"stats"
+	{
+
+		"level" "1"
+			
+		"health_max" "9"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "0" 
+		"rangedAttackMinRange" "0"
+		
+		"walkSpeed" "3"
+	}
+
+	"skills"
+	{
+		"100" "regson_eldritch_heal_trait"
+		"200" "regson_eldritch_syphon_trait"
+		"300" "athletics_endturn_trait"
+		}
+	
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "regson_vicious_lounge"
+			}
+
+			"2" 
+			{
+				"1" "regson_shadow_uppercut"
+				"2" "regson_blood_veil"
+				"3" "regson_eldritch_focus"
+			}
+
+			"3"
+			{	
+				"1" "regson_vindicator"
+				"2" "regson_eldritch_fury"
+				"3" "regson_twilight_step"
+			}
+		}
+
+		"defaultSkill" "regson_eldritch_blades"
+
+		"states"
+		{
+			"LEGEND" 				"1"
+		}
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupRegsonSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatRegson_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatRegson_death"
+			"useSkill" "krl_va_combatRegson_action"
+			"startTurn" "krl_va_combatRegson_turnStart"
+			"promote" "krl_va_combatRegson_promote"
+			"selectHero" "krl_va_combatRegson_select"
+			"victory" "krl_va_combatRegson_victory"
+		}
+	}
+}
+
+
+"RLRegsonLvl2" 
+{
+	"InheritsFrom" 			"RLRegsonLvl1"
+	"nextLevelArchetype" 	"RLRegsonLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+			
+		"health_max" "11"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "7"
+
+		"rangedAttackRange" "0" 
+		"rangedAttackMinRange" "0"
+		
+		"walkSpeed" "3"
+	}
+}
+
+
+"RLRegsonLvl3" 
+{
+	"InheritsFrom" "RLRegsonLvl1"
+
+	"stats"
+	{
+
+		"level" "3"
+			
+		"health_max" "13"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "9"
+
+		"rangedAttackRange" "0" 
+		"rangedAttackMinRange" "0"
+		
+		"walkSpeed" "4"
+	}
+}

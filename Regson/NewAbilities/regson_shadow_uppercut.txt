@@ -1,0 +1,114 @@
+"regson_shadow_uppercut"
+{
+    "AbilityBehavior"   "MELEE | UNIT_TARGET"
+    "AbilityTeamFilter" "TEAM_ENEMY"
+    "AbilityCustomTargetFilter" "not(isOnState(%UNIT, #FIXED_POSITION)) && not(isOnState(%UNIT, #BOSS))"
+
+    "AbilityCastRange"  "1"
+    "AbilityCooldown"   "3"
+    "AbilityAPCost"     "1"
+    "AnimationID"       "Uppercut"
+    "CastFXId"          "RegsonShadowUppercutCastFXMega"
+    "Icon"              "ShadowUppercut"
+
+    "AbilitySpecial" 
+    {
+        "01"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "damage"                "stat(%CASTER, #attackDamage)+2"
+        }
+
+        "02"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "epic_extra_damage"     "ceil(stat(%CASTER, #attackDamage)/4)"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "SetToContext"
+        {
+            "Context" "currentContext()"
+            "Key" "#sourcePosition"
+            "Value" "unitPosition(%SOURCE)"
+            "Type" "FIELD_OBJECT"
+        }
+
+        "SetToContext"
+        {
+            "Context" "currentContext()"
+            "Key" "#targetPosition"
+            "Value" "unitPosition(%TARGET)"
+            "Type" "FIELD_OBJECT"
+        }
+
+        "MoveUnit"
+        {
+            "Target"        "%SOURCE"
+            "Position"    "newPoint(1000, 1000, 0)"
+        }
+
+        "AttachEffect"
+        {
+            "EffectName" "ShadowStrikeTeleportFXMega"
+            "Target" "%sourcePosition"
+        }
+
+        "AttachEffect"
+        {
+            "EffectName" "ShadowStrikeTeleportFXMega"
+            "Target" "%targetPosition"
+        }
+
+        "MoveUnit"
+        {
+            "Target"        "%TARGET"
+            "Position"    "%sourcePosition"
+        }
+
+        "MoveUnit"
+        {
+            "Target"        "%SOURCE"
+            "Position"    "%targetPosition"
+        }
+
+        "Hit"
+        {
+            "Target" "%TARGET"
+            "EffectName" "GenericSpellHitFXMega" 
+            "Tags" "stringList(#MAGICAL, #TARGETED)"
+
+            "InitActions"
+            {
+                "Conditional"
+                {
+                    "Condition" "hasModifier(%CASTER, #regson_eldritch_state_modifier)"
+
+                    "Actions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%damage) + expr(%epic_extra_damage)"
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+
+                    "ElseActions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%damage)"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

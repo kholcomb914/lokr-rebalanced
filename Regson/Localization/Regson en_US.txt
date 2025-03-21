@@ -1,0 +1,13 @@
+"SKILL_regson_eldritch_heal_trait_NAME" = "Eldritch Heal"
+"SKILL_regson_eldritch_heal_trait_DESCRIPTION" = "Heals some HP whenever an enemy dies less than {range} hexes away."
+"SKILL_regson_eldritch_heal_trait_DESCRIPTION_DATA" = "Healing: <style="buff">{level} {icon#statHP}</style>"
+
+"SKILL_regson_eldritch_syphon_trait_NAME" = "Eldritch Syphon"
+"SKILL_regson_eldritch_syphon_trait_DESCRIPTION" = "Resists some magic damage. Whenever he is hit with magic damage, enters Eldritch State (used to trigger EPIC effects)."
+"SKILL_regson_eldritch_syphon_trait_DESCRIPTION_DATA" = "Damage reduction: <style="buff">-{level} {icon#damageMagical}</style>\nState duration: <style="highlight">{duration} {icon#turns}</style>"
+
+"SKILL_regson_blood_veil_NAME" = "Blood Veil"
+"SKILL_regson_blood_veil_DESCRIPTION" = "Spends HP to cast a shield on himself that will negate all damage from the next hit."
+"SKILL_regson_blood_veil_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> When in Eldritch State, deals damage retribution back to the attacker."
+"SKILL_regson_blood_veil_DESCRIPTION_DATA" = "HP Cost: <style="damage">{healthSpent} {icon#statHP}\n</style>Range: <style="highlight">SELF</style>"
+"SKILL_regson_blood_veil_DESCRIPTION_EXTRA" = "<style="extra">Requires at least {healthRequirement} HP to be cast.</style>"

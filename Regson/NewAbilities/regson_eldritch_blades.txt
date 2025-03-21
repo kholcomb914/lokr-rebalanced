@@ -1,0 +1,94 @@
+"regson_eldritch_blades"
+{
+    "AbilityBehavior"       "MELEE"
+    "AbilityTeamFilter"     "TEAM_ENEMY"
+    "AbilityCastRange"      "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"       "1"
+    "AbilityAPCost"         "1"
+    "AnimationID"           "EldrichBlades"
+    "Icon"                  "EldritchBlades"
+    "CastFXId"              "RegsonEldritchBladesCastFXMega"
+
+    "AbilitySpecial" 
+    {
+        "01"
+        {
+            "var_type"          "FIELD_EXPRESSION"
+            "primaryDamage"     "ceil(stat(%CASTER, #attackDamage)/2)"
+        }
+
+        "02"
+        {
+            "var_type"          "FIELD_EXPRESSION"        
+            "secondaryDamage"   "floor(stat(%CASTER, #attackDamage)/2)"
+        }
+
+    }
+
+    "OnAbilityAction"
+    {
+        "Hit"
+        {
+            "Target" "%TARGET"
+            "EffectName" "RuptureHitFXMega" 
+            "Tags" "stringList(#MELEE, #TARGETED)"
+
+            "InitActions"
+            {
+                "Conditional"
+                {
+                    "Condition" "hasModifier(%CASTER, #regson_eldritch_state_modifier)"
+
+                    "Actions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_TRUE"
+                            "Damage"        "expr(%primaryDamage)"
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+
+                    "ElseActions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%primaryDamage)"
+                        }
+                    }                    
+                }
+            }
+        }
+    }
+
+    "OnAbilityCustomEvent"
+    {
+        "Conditional"
+        {
+            "Condition" "equal(%customEvent, #AbilityAction2)"
+
+            "Actions" 
+            {
+                "Hit"
+                {
+                    "Target" "%TARGET"
+                    "EffectName" "RuptureHitFXMega" 
+                    "Tags" "stringList(#MELEE, #TARGETED)"
+
+                    "InitActions"
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_TRUE"
+                            "Damage"        "expr(%secondaryDamage)"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
