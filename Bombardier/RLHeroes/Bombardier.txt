@@ -1,0 +1,121 @@
+"MinionDwarfBombardier" 
+{
+	"UniqueId" "Bombardier"
+	"Model" "HumanDwarfFemale"
+	"MetaExo" "ExoSkeletonHumanDwarfFemale_MetaDataAsset"
+	"Name" "MINION_DWARF_BOMBARDIER"
+	"InheritsFrom" "Hero"
+	"nextLevelArchetype" "MinionDwarfBombardierLvl2"
+	"cinematicTags" "Heroe|Minion|Female|Bombardier|ct_minion|ct_ranged|ct_craft|ct_knowledge|ct_wisdom|UPGRADES_crafty"
+	"AttackType" "ARTILLERY"
+	"Icon" "Asst_Banner_Bombardier"
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_Bombardier"
+	"PortraitBackgroundColor" "cc9629"
+	
+	"stats"
+	{
+
+		"level" "1"
+
+		"health_max" "4"
+		"armor_max" "2"
+		"armor_regen_per_turn" "1"
+
+		"baseDamage"  "3"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"10" "mayhem_trait"
+		"100" "crafty_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "big_badaboom"
+			}
+
+			"2" 
+			{
+				"1" "dwarf_zooka"
+				"2" "bombardier_napalm_shower"
+			}
+
+			"3"
+			{
+				"1" "rocket_jump"
+				"2" "bombardier_robombs"
+			}
+		}
+
+		"defaultSkill" "shortfuse"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupBombardierSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatBombardier_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatBombardier_death"
+			"useSkill" "krl_va_combatBombardier_action"
+			"startTurn" "krl_va_combatBombardier_turnStart"
+			"promote" "krl_va_combatBombardier_promote"
+			"selectHero" "krl_va_combatBombardier_select"
+		}
+	}
+}
+
+"MinionDwarfBombardierLvl2" 
+{
+	"InheritsFrom" "MinionDwarfBombardier"
+	"nextLevelArchetype" "MinionDwarfBombardierLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+
+		"health_max" "5"
+		"armor_max" "3"
+		"armor_regen_per_turn" "1"
+
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionDwarfBombardierLvl3" 
+{
+	"InheritsFrom" "MinionDwarfBombardier"
+
+	"stats"
+	{
+
+		"level" "3"
+
+		"health_max" "6"
+		"armor_max" "4"
+		"armor_regen_per_turn" "2"
+
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+}
