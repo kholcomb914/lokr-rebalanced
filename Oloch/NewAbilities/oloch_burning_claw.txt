@@ -1,0 +1,257 @@
+"oloch_burning_claw"
+{
+    "AbilityBehavior"       "MELEE"
+    "AbilityTeamFilter"     "TEAM_ENEMY"
+    "AbilityCastRange"      "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"       "2"
+    "AbilityAPCost"         "1"
+    "AnimationID"           "SpellCastB"
+    "CastFXId"              "OlochSealOfImmolationCastFXMega"
+    "Icon"                  "BurningClaw"
+
+    "AbilitySpecial" 
+    {
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "damage"  "stat(%CASTER, #attackDamage)-2"
+        }
+
+        "02"
+        {
+            "var_type" "FIELD_EXPRESSION"        
+            "burningDuration"  "2"
+        }
+        "03"
+        {
+            "var_type" "FIELD_FLOAT"
+            "stunDuration"  "1"
+        }
+
+    }
+
+    "OnCustomTargeting"
+    {
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"      "hexPosition(hexNeighbour(%DESTINATIONHEXA, unitHex(%TARGET), -1))"
+                "Radius"     "0"
+                "Teams"     "TEAM_ENEMY"
+                "ExcludedUnits" "objectList(%SOURCE)"
+            }
+
+            "IteratorName" "#newTarget"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Unit" "%newTarget"
+                }
+            }
+        }
+
+        "ActOnHexas"
+        {
+            "Center" "hexNeighbour(%DESTINATIONHEXA, unitHex(%TARGET), -1)"
+            "Range" "0"
+            "IteratorName" "#hexa"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Hexa" "%hexa"
+                }
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"      "hexPosition(hexNeighbour(%DESTINATIONHEXA, unitHex(%TARGET), 1))"
+                "Radius"     "0"
+                "Teams"     "TEAM_ENEMY"
+                "ExcludedUnits" "objectList(%SOURCE)"
+            }
+
+            "IteratorName" "#newTarget"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Unit" "%newTarget"
+                }
+            }
+        }
+
+        "ActOnHexas"
+        {
+            "Center" "hexNeighbour(%DESTINATIONHEXA, unitHex(%TARGET), 1)"
+            "Range" "0"
+            "IteratorName" "#hexa"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Hexa" "%hexa"
+                }
+            }
+        }
+    }
+
+
+    "OnAbilityAction"
+    {   
+        "PlaySound"
+        {
+            "Sound" "#krl_sfx_combatOloch_burningClawFlame"
+        }
+        
+         "Times"
+        {
+            "Times"             "3"
+            "IteratorName"      "#index"
+
+            "Actions"
+            {
+                "ActOnHexas"
+                {
+                    "Center"        "hexNeighbour(unitHex(%SOURCE), unitHex(%TARGET), %index - 1)"
+                    "Range"         "0"
+                    "IteratorName"  "#hexa"
+                    "RequireEmpty"  "0"
+                    "Max" "1"
+                    
+                    "Actions"    
+                    {
+                        "AttachEffect"
+                        {
+                            "EffectName"    "OlochBurningClawHitFXMega"
+                            "Target"        "hexPosition(%hexa)"
+                        }
+                    }
+                }
+
+                "ActOnTargets"
+                {
+                    "Target"
+                    {
+                        "Center"        "hexPosition(hexNeighbour(unitHex(%SOURCE), unitHex(%TARGET), %index - 1))"
+                        "Radius"        "0"
+                        "Teams"         "TEAM_ENEMY"
+                        "ExcludedUnits" "objectList(%SOURCE)"
+                    }
+
+                    "IteratorName" "#newTarget"
+                
+                    "Actions"    
+                    {
+                        "Hit"
+                        {
+                            "Target"                "%newTarget"
+                            "Tags"                  "stringList(#MAGICAL, #TARGETED)"
+
+                            "InitActions"
+                            {
+                                "AddDamage"
+                                {
+                                    "Type"          "DAMAGE_TRUE"
+                                    "Damage"        "expr(%damage)"
+                                }
+
+                                "Conditional"
+                                {
+                                    "Condition" "isOnState(%HITTARGET, #WEAKENED)"
+                                    
+                                    "Actions" 
+                                    {
+                                        "ApplyModifier"
+                                        {
+                                            "ModifierName"  "modifier_stunned"
+                                            "Target"        "%HITTARGET"
+                                            "Duration"      "%stunDuration"
+                                            "Refresh"       "1"
+                                        }
+
+                                        "MarkHitLegendary"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+
+                            "Actions"
+                            {
+                                "Conditional"
+                                {
+                                    "Condition" "not(isOnState(%HITTARGET, #DEAD))"
+
+                                    "Actions" 
+                                    {
+                                        "RemoveModifier"
+                                        {
+                                            "ModifierTag"    "dot"
+                                            "Target"         "%HITTARGET"
+                                        }
+
+                                        "ApplyModifier"
+                                        {
+                                            "ModifierName"  "modifier_burning"
+                                            "Target"        "%HITTARGET"
+                                            "Duration"      "expr(%burningDuration)"
+                                            "Refresh"       "1"
+                                        }
+
+                                        "Knockback" 
+                                        {
+                                            "Target"        "%HITTARGET"
+                                            "Center"        "unitPosition(%HITSOURCE)"
+                                            "Strength"      "1"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "3.3"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "10"  
+                    }
+                }
+
+                "Ignores targets already frozen"
+                {
+                    "Curve" "Linear|-1|1|1|0"
+                    "Consideration" "TargetHasModifier"
+                    "Params"
+                    {
+                        "ModifierName" "modifier_new_freeze"  
+                    }
+                }
+            }
+        }
+    }
+}

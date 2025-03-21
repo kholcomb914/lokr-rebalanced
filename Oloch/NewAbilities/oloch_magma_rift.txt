@@ -1,0 +1,145 @@
+"oloch_magma_rift"
+{
+    "AbilityBehavior"                   "UNIT_TARGET"
+    "AbilityTeamFilter"                 "TEAM_ENEMY"
+    "AbilityCastRange"                  "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCastMinRange"               "stat(%CASTER, #rangedAttackMinRange)" 
+    "AbilityCooldown"                   "3"
+    "AbilityAPCost"                     "1"
+    "AnimationID"                       "SpellCastC"
+    "CastFXId"                          "OlochSealOfImmolationCastFXMega"
+    "Icon"                              "MagmaRift"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"                  "FIELD_EXPRESSION"
+            "damage"                    "ceil(stat(%CASTER, #attackDamage)/2)"
+        }
+        "02"
+        {
+            "var_type"                  "FIELD_FLOAT"
+            "riftsChain"                    "2" 
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "AttachEffect"
+        {
+            "EffectName"    "MagmaRiftExplotionFXMega"
+            "Target"        "unitPosition(%TARGET)"
+        }
+
+        "Hit"
+        {
+            "Target"                    "%TARGET"
+            "EffectName"                "AbyssalBlastHitFXMega" 
+            "Tags"                      "stringList(#PROJECTILE, #TARGETED, #MAGICAL)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"              "DAMAGE_TRUE"
+                    "Damage"            "expr(%damage)"
+                }
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"        "%TARGET"
+                "Radius"        "1"
+                "Teams"         "TEAM_ENEMY"
+                "ExcludedUnits" "objectList(%TARGET)"
+                "MaxTargets"    "1"
+                "Random"        "1"
+            }
+
+            "IteratorName"      "#newTarget"
+        
+            "Actions"    
+            {
+                "Delay"
+                {
+                    "Time" "0.25"
+                    "Actions"
+                    {
+                        "AttachEffect"
+                        {
+                            "EffectName"    "MagmaRiftExplotionFXMega"
+                            "Target"        "unitPosition(%newTarget)"
+                        }
+
+                        "Hit"
+                        {
+                            "Target"                    "%newTarget"
+                            "EffectName"                "AbyssalBlastHitFXMega" 
+                            "Tags"                      "stringList(#PROJECTILE, #TARGETED, #MAGICAL)"
+
+                            "InitActions"
+                            {
+                                "AddDamage"
+                                {
+                                    "Type"              "DAMAGE_TRUE"
+                                    "Damage"            "expr(%damage)"
+                                }
+                            }
+                        }
+
+                        "ActOnTargets"
+                        {
+                            "Target"
+                            {
+                                "Center"        "%newTarget"
+                                "Radius"        "1"
+                                "Teams"         "TEAM_ENEMY"
+                                "ExcludedUnits" "objectList(%TARGET, %newTarget)"
+                                "MaxTargets"    "1"
+                                "Random"        "1"
+                            }
+
+                            "IteratorName"      "#newTarget2"
+                        
+                            "Actions"    
+                            {
+                                "Delay"
+                                {
+                                    "Time" "0.25"
+                                    "Actions"
+                                    {
+                                        "AttachEffect"
+                                        {
+                                            "EffectName"    "MagmaRiftExplotionFXMega"
+                                            "Target"        "unitPosition(%newTarget2)"
+                                        }
+
+                                        "Hit"
+                                        {
+                                            "Target"                    "%newTarget2"
+                                            "EffectName"                "AbyssalBlastHitFXMega" 
+                                            "Tags"                      "stringList(#PROJECTILE, #TARGETED, #MAGICAL)"
+
+                                            "InitActions"
+                                            {
+                                                "AddDamage"
+                                                {
+                                                    "Type"              "DAMAGE_TRUE"
+                                                    "Damage"            "expr(%damage)"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

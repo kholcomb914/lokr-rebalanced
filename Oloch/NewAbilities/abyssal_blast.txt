@@ -1,0 +1,82 @@
+"abyssal_blast"
+{
+    "AbilityBehavior"               "UNIT_TARGET"
+    "AbilityTeamFilter"             "TEAM_ENEMY"
+    "AbilityCastRange"              "stat(%CASTER, #rangedAttackRange)"
+    "AbilityCastMinRange"           "stat(%CASTER, #rangedAttackMinRange)" 
+    "AbilityCooldown"               "0"
+    "AbilityAPCost"                 "1"
+    "AnimationID"                   "SpellCastC"
+    "CastFXId"                      "AbyssalBlastChargeFXMega"
+    "Icon"                          "DemonicBlast"
+   
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "RangedDmg"             "stat(%CASTER, #attackDamage)-1"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "TrackingProjectile"
+        {
+            "Target"                "%TARGET"
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+            "TargetPos"             "unitPosition(%TARGET, #Chest)"
+            "Model"                 "OlochFireBlastProjectile"
+
+            "Params" 
+            {
+                "damage" 
+                { 
+                    "type"          "FIELD_FLOAT"
+                    "value"         "expr(%RangedDmg)"
+                }
+            }
+        }
+    }
+
+    "OnProjectileHitUnit"
+    {
+        "Hit"
+        {
+            "Target"        "%TARGET"
+            "EffectName"    "AbyssalBlastExplosionFXMega" 
+            "Tags"          "stringList(#PROJECTILE, #TARGETED, #MAGICAL)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"      "DAMAGE_TRUE"
+                    "Damage"    "%damage"
+                }
+                
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "2.3"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "expr(%AbilityCastRange)"  
+                    }
+                }
+            }
+        }
+    }
+}

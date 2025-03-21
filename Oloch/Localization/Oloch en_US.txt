@@ -1,0 +1,22 @@
+"COMBAT_MODIFIER_modifier_fire_barrier_TITLE" = "Fire Barrier"
+"COMBAT_MODIFIER_modifier_fire_barrier_DESCRIPTION" = "This unit is immune to <style="debuff">burning</style>, receives <style="buff">{damageReduction} damage</style>, and brings retribution of <style="damage">{damageRetributed} true damage</style> on the attacker."
+
+"SKILL_oloch_fire_barrier_NAME" = "Fire Barrier"
+"SKILL_oloch_fire_barrier_DESCRIPTION" = "Casts a Fire Barrier on an ally, which grants damage reduction to all incoming damage and immunity to <style="debuff">burning</style> and <style="debuff">stunned</style>. Against melee attacks, the shield will <style="damage">explode</style>, dealing damage in a radius and applying <style="debuff">burning</style>."
+"SKILL_oloch_fire_barrier_DESCRIPTION_DATA" = "Damage reduction: <style="buff">{damageReduction}</style>\nExplosion damage: <style="damage">{damageRetributed} {icon#damagePhysical}</style>\nDuration: <style="highlight">{duration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"SKILL_oloch_magma_rift_NAME" = "Magma Rift"
+"SKILL_oloch_magma_rift_DESCRIPTION" = "Evokes a Magma Rift below the target, which spreads to adjacent enemies up to <style="highlight">{riftsChain} times</style>."
+"SKILL_oloch_magma_rift_DESCRIPTION_DATA" = "Damage per rift: <style="damage">{damage} {icon#damageTrue}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"SKILL_abyssal_blast_NAME" = "Abyssal Blast"
+"SKILL_abyssal_blast_DESCRIPTION" = "Oloch attacks his target with a small fireball."
+"SKILL_abyssal_blast_DESCRIPTION_DATA" = "Damage: <style="damage">{RangedDmg} {icon#damageTrue}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+
+"COMBAT_MODIFIER_fire_barrier_modifier_TITLE" = "Fire Barrier"
+"COMBAT_MODIFIER_fire_barrier_modifier_DESCRIPTION" = "This unit is immune to <style="debuff">burning</style> and <style="concept">stunned</style>, receives <style="buff">{damageReduction} damage</style>, and explodes against melee, dealing <style="damage">{damageRetributed} physical damage</style> in a radius."
+
+"SKILL_magma_eruption_NAME" = "Magma Eruption"
+"SKILL_magma_eruption_DESCRIPTION" = "Evokes a magma pillar below the target."
+"SKILL_magma_eruption_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> If the target is killed, it explodes, damaging and applying <style="debuff">burning</style> to all units within a {epicRadius}-hex radius."
+"SKILL_magma_eruption_DESCRIPTION_DATA" = "Damage: <style="damage">{RangedDmg} {icon#damageTrue}</style>\nEPIC damage: <style="damage">{epicDamage} {icon#damagePhysical}</style>\nEPIC burning duration: <style="highlight">{epicDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
