@@ -1,0 +1,125 @@
+"MinionArcaneMage" 
+{
+	"UniqueId" "ArcaneMage"
+	"Model" "HumanArcaneMage"
+	"MetaExo" "ExoSkeletonHumanArcaneMage_MetaDataAsset"
+	"Name" "MINION_ARCANE_MAGE"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Male|Wizard|ct_minion|ct_ranged|ct_magic|ct_perception|ct_knowledge|UPGRADES_magic"
+	"nextLevelArchetype" "MinionArcaneMageLvl2"
+	"AttackType" "MAGIC"
+	"Icon" "Asst_Banner_Arcane"
+	"Background" "hero_roster_legend_bg_forest"
+	"PortraitBackgroundColor" "cca13d"
+	"UnitOnMap" "Asst_Party_Mage"
+
+	"stats"
+	{
+
+		"level" "1"
+		"health_max" "3"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" "arcane_replenish_trait"
+		"100" "magic_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "arcane_magic_missile"
+			}
+
+			"2" 
+			{
+				"1" "arcane_ice_lance"
+				"2" "arcane_mage_teleport"
+			}
+
+			"3"
+			{
+				"1" "fireball"
+				"2" "arcane_mage_disintegrate"
+			}
+		}
+
+		"defaultSkill" "arcane_ray"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupArcaneMageSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatArcaneMage_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatArcaneMage_death"
+			"useSkill" "krl_va_combatArcaneMage_action"
+			"startTurn" "krl_va_combatArcaneMage_turnStart"
+			"promote" "krl_va_combatArcaneMage_promote"
+			"selectHero" "krl_va_combatArcaneMage_select"
+			"walk" ""
+		}
+	}
+
+}
+
+
+
+"MinionArcaneMageLvl2" 
+{
+	"InheritsFrom" "MinionArcaneMage"
+	"nextLevelArchetype" "MinionArcaneMageLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+		"health_max" "4"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionArcaneMageLvl3" 
+{
+	"InheritsFrom" "MinionArcaneMage"
+
+	"stats"
+	{
+
+		"level" "3"
+		"health_max" "5"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+		"armor_gain_passTurn" "0"
+		"baseDamage"  "7"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "3"
+	}
+}
