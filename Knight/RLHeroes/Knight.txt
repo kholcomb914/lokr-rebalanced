@@ -1,0 +1,131 @@
+"MinionFemaleKnight" 
+{
+	"UniqueId" "FemaleKnight"
+	"Model" "HumanFemaleKnight"
+	"MetaExo" "ExoSkeletonHumanFemaleKnight_MetaDataAsset"
+	"Name" "MINION_FEMALE_KNIGHT"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Female|Knight|ct_minion|ct_might|ct_perception|ct_social|UPGRADES_mighty"
+	"nextLevelArchetype" "MinionFemaleKnightLvl2"
+	"Icon" "Asst_Banner_Knight" 
+	"Background" "hero_roster_companion_bg_forest"
+	"AttackType" "PHYSICAL"
+	"UnitOnMap" "Asst_Party_Knight"		
+	"PortraitBackgroundColor" "5f777f"
+
+	"stats"
+	{
+
+		"level" "1"
+			
+		"health_max" "6"
+		"armor_max" "5"
+		"armor_regen_per_turn" "2"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "3"
+
+		"rangedAttackRange" "0" 
+		
+		"blockChance" "0.25"
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" 	"block_trait"
+		"100" 	"mighty_endturn_trait"
+		}
+
+		"skillProgression"
+		{
+			"1" 
+			{
+				"1" "knight_shield_bash"
+			}
+
+			"2" 
+			{
+				"1" "knight_gain_terrain"
+				"2" "knight_hold_the_line"
+			}
+
+			"3"
+			{
+				"1" "charge"
+				"2" "knight_shieldarang"
+			}
+		}
+
+		"defaultSkill" "knight_slash"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupKnightSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatKnight_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatKnight_death"
+			"useSkill" "krl_va_combatKnight_action"
+			"startTurn" "krl_va_combatKnight_turnStart"
+			"promote" "krl_va_combatKnight_promote"
+			"selectHero" "krl_va_combatKnight_select"
+		}
+	}
+}
+
+
+"MinionFemaleKnightLvl2" 
+{
+	"InheritsFrom" "MinionFemaleKnight"
+	"nextLevelArchetype" "MinionFemaleKnightLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+			
+		"health_max" "7"
+		"armor_max" "6"
+		"armor_regen_per_turn" "3"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "0" 
+		
+		"blockChance" "0.25"
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionFemaleKnightLvl3" 
+{
+	"InheritsFrom" "MinionFemaleKnight"
+
+	"stats"
+	{
+
+		"level" "3"
+			
+		"health_max" "9"
+		"armor_max" "7"
+		"armor_regen_per_turn" "4"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "0" 
+		
+		"blockChance" "0.25"
+		
+		"walkSpeed" "2"
+	}
+}

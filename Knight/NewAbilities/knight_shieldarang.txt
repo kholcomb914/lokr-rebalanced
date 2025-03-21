@@ -1,0 +1,172 @@
+"knight_shieldarang"
+{
+    "AbilityBehavior"               "POINT_TARGET | AOE"
+    "AnimationID"                   "SpellCastE"
+    "CastFXId"                      "KnightShieldarangCastFXMega"
+    "Icon"                          "Shieldarang" 
+
+    "AbilityAOETeamFilter"          "TEAM_ALL"
+    "AbilityAOERange"               "expr(%distanceToTravel)"
+    "AbilityAOEKind"                "RANGE_TUNNEL"
+    "AbilityAOEWidth"               "1"
+    "AbilityAOECenterOnCaster"      "1"
+    "AbilityAOEAffectsCaster"       "0"
+    "AbilityCastRange"              "expr(%distanceToTravel)"
+    "AbilityCooldown"               "3"
+    "AbilityPreWarm"                "2"
+    "AbilityAPCost"                 "1"
+   
+    "AbilitySpecial" 
+    {
+        "01"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "damage"                "ceil(stat(%CASTER, #attackDamage)/2)"
+        }
+
+        "02"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "distanceToTravel"      "3"
+        }
+
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "stunDuration"          "1"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "TrackingProjectile"
+        {
+            "Model"                 "KnightShieldarangProjectile"
+            "DistanceToTravel"      "expr(%distanceToTravel)"
+            "TargetPos"             "%TARGET"
+            "SourcePos"             "unitPosition(%SOURCE, #CastPoint)"
+
+            "TargetFilter"
+            {
+                "Radius"            "0"
+                "Teams"             "TEAM_ALL"
+                "ExcludedUnits"     "objectList(%SOURCE)"
+                "Width"             "1"
+                "Kind"              "RANGE_TUNNEL"
+            }
+
+            "Params" 
+            {
+                "damage" 
+                {
+                    "type"          "FIELD_FLOAT" 
+                    "value"         "expr(%damage)"
+                }
+
+                "firstProjectile" 
+                {
+                    "type"          "FIELD_FLOAT"
+                    "value"         "1"
+                }
+            }
+        }
+    }
+
+    "OnProjectileHitUnit" 
+    {
+        "Hit"
+        {
+            "Target"                "%TARGET"
+            "EffectName"            "ShieldarangHitFXMega" 
+            "Tags"                  "stringList(#PROJECTILE, #AOE)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_PHYSICAL" 
+                    "Damage"        "%damage"
+                }
+            }
+
+            "Conditional"
+            {
+                "Condition" "isOnState(%HITTARGET, #WEAKENED)"
+                "Actions"
+                {
+                    "MarkHitLegendary"
+                    {
+                    }
+                }
+            }
+
+            "Actions"
+            {
+                "Conditional"
+                {
+                    "Condition" "hitIsLegendary(%HIT)"
+
+                    "Actions" 
+                    {
+                        "ApplyModifier"
+                        {
+                            "ModifierName"  "modifier_stunned"
+                            "Target"        "%HITTARGET"
+                            "Duration"      "expr(%stunDuration)"
+                            "Refresh"   "1"
+                        }
+                    }
+
+                }
+            }
+        }
+
+        "KeepProjectileGoing"
+        {
+        }
+    }
+
+    "OnProjectileDestinationReached" 
+    {
+        "Conditional"
+        {
+            "Condition" "%firstProjectile"
+
+            "Actions" 
+            {
+                "TrackingProjectile"
+                {
+                    "Model"                 "KnightShieldarangProjectile"
+                    "TargetPos"             "unitPosition(%SOURCE)"
+                    "SourcePos"             "%TARGET"
+
+                    "TargetFilter"
+                    {
+                        "Radius"            "0"
+                        "Teams"             "TEAM_ALL"
+                        "ExcludedUnits"     "objectList(%SOURCE)"
+                        "Width"             "1"
+                        "Kind"              "RANGE_TUNNEL"
+                    }
+
+                    "Params" 
+                    {
+                        "damage" 
+                        {
+                            "type"          "FIELD_FLOAT" 
+                            "value"         "%damage"
+                        }
+                    }
+                }
+            }
+
+            "ElseActions" 
+            {
+                "PlaySound"
+                {
+                    "Sound" "#krl_sfx_combatKnight_shieldarangCatchBack"
+                }
+            }
+        }
+    }
+}

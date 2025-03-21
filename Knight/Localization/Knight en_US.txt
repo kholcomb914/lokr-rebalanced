@@ -1,0 +1,18 @@
+
+"SKILL_knight_gain_terrain_NAME" = "Gain Terrain"
+"SKILL_knight_gain_terrain_DESCRIPTION" = "Damages and applies <style="concept">knockback</style> to an enemy."
+"SKILL_knight_gain_terrain_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Bonus damage against <style="concept">immobilized</style> targets."
+"SKILL_knight_gain_terrain_DESCRIPTION_DATA" = "Damage: <style="damage">{MinDamage} {icon#damagePhysical}</style>\nEPIC damage: <style="damage">+{extraDamage} {icon#damagePhysical}</style>\nRange: <style="highlight">MELEE</style>"
+"SKILL_knight_gain_terrain_DESCRIPTION_EXTRA" = "<style="extra"> The Knight may use her remaining movement allowance after using this skill.</style>"
+
+"SKILL_knight_hold_the_line_NAME" = "Hold the Line"
+"SKILL_knight_hold_the_line_DESCRIPTION" = "Lets out an encouraging battle cry that raises the armor of all allies within a {aoeRadius}-hex radius and removes <style="concept">immobilized</style> effects."
+"SKILL_knight_hold_the_line_DESCRIPTION_DATA" = "Extra armor: <style="buff">+{extraArmor} {icon#statArmor}</style>\nDuration: <style="buff">{duration} {icon#turns}</style>\nRange: <style="highlight">SELF</style>"
+
+"COMBAT_MODIFIER_modifier_knight_hold_the_line_rebalance_TITLE" = "Armored"
+"COMBAT_MODIFIER_modifier_knight_hold_the_line_rebalance_DESCRIPTION" = "This unit has improved armor."
+
+"SKILL_knight_shieldarang_NAME" = "Shieldarang"
+"SKILL_knight_shieldarang_DESCRIPTION" = "Tosses her shield up to {distanceToTravel} hexes away, damaging all units in its way, there and back."
+"SKILL_knight_shieldarang_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Applies stunned to <style="debuff">weakened</style> targets."
+"SKILL_knight_shieldarang_DESCRIPTION_DATA" = "Damage per hit: <style="damage">{damage} {icon#damagePhysical}</style>\nEPIC stunned duration: <style="highlight">{stunDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"

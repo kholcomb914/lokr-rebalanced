@@ -1,0 +1,160 @@
+"knight_gain_terrain"
+{
+    "AbilityBehavior"   "MELEE"
+    "AbilityTeamFilter" "TEAM_ENEMY"
+    "AbilityCastRange" "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"   "1"
+    "AbilityAPCost"     "1"
+
+    "AnimationID"   "SpellCastC"
+    "CastFXId" "GainTerrainSoundFXMega"
+    "Icon" "Lunge"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "MinDamage"  "stat(%CASTER, #attackDamage)-1"
+        }
+
+        "02"
+        {
+            "var_type" "FIELD_EXPRESSION"        
+            "MaxDamage"  "stat(%CASTER, #attackDamage)-1"
+        }
+
+        "03"
+        {
+            "var_type" "FIELD_EXPRESSION"        
+            "extraDamage"  "ceil(stat(%CASTER, #attackDamage)/2)"
+        }
+    }
+
+
+    "OnAbilityAction"
+    {
+        "SetToContext"
+        {
+            "Context" "currentContext()"
+            "Key" "#knockbackCenter"
+            "Value" "hexPosition(hexNeighbour(unitHex(%SOURCE), unitHex(%TARGET), 3))"
+            "Type" "FIELD_OBJECT"
+        }
+
+        "Hit"
+        {
+            "Target" "%TARGET"
+            "EffectName" "HeavyStrikeHitFXMega" 
+            "Tags" "stringList(#MELEE, #TARGETED, #CANTBEBLOCKED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_PHYSICAL"
+                    "Damage"        "randomI(expr(%MinDamage), expr(%MaxDamage))"
+                    
+                }
+
+                "Conditional"
+                {
+                    "Condition" "isOnState(%HITTARGET, #IMMOBILIZED) "
+                    
+
+                    "Actions" 
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%extraDamage)"
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+                }
+            }
+
+            "Actions"
+            {
+                "Knockback" 
+                {
+                    "Target" "%HITTARGET"
+                    "Center" "unitPosition(%HITSOURCE)"
+                    "Strength" "2"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"  "knight_gain_terrain_extra_step_modifier"
+                    "Target"        "%HITSOURCE"
+                    "Duration"      "1"
+                } 
+            }
+        }
+    }
+
+    "Modifiers"
+    {
+        "knight_gain_terrain_extra_step_modifier"
+        {
+
+            
+
+            "#OnAdded"
+            {
+                "SetStat"
+                {
+                    "Target" "%TARGET"
+                    "Stat" "#walkSpeedAvailable"
+                    "Value" "1"
+                }
+            }
+
+            "OnUnitLeavingNode"
+            {
+                "Conditional"
+                {
+                    "Condition" "equal(%TARGET, %UNIT)"
+
+                    "Actions"
+                    {
+                        "RemoveModifier"
+                        {
+                            "ModifierName"    "knight_gain_terrain_extra_step_modifier"
+                            "Target"         "%TARGET"
+                        }
+                    }
+                }
+            }
+
+            "States"
+            {
+                "HAS_EXTRA_STEP" "1"
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "4"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "10"  
+                    }
+                }
+            }
+        }
+    }
+}
