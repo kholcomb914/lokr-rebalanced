@@ -1,0 +1,122 @@
+"MinionRanger" 
+{
+	"UniqueId" "Ranger"
+	"Model" "HumanArcher"
+	"MetaExo" "ExoSkeletonHumanRanger_MetaDataAsset"
+	"Name" "MINION_RANGER"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Male|Ranger|ct_minion|ct_ranged|ct_athletics|ct_survival|ct_stealth|UPGRADES_athletic"
+	"nextLevelArchetype" "MinionRangerLvl2"
+	"AttackType" "RANGED"
+	"Icon" "Asst_Banner_Ranger"
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_Ranger"
+	"PortraitBackgroundColor" "7d8f28"
+
+	"stats"
+	{
+
+		"level" "1"
+
+		"health_max" "4"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "4" 
+		"rangedAttackMinRange" "2"
+		
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" 		"agility_trait"
+		"100" 		"athletics_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "ranger_poison_arrow"
+			}
+
+			"2" 
+			{
+				"1" "summon_wolf"
+				"2" "ranger_summon_brambles"
+			}
+
+			"3"
+			{
+				"1" "ricochet_shot"
+				"2" "ranger_kebab_shot"
+			}
+		}
+
+		"defaultSkill" "ranger_precise_shot"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupRangerSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatRanger_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatRanger_death"
+			"useSkill" "krl_va_combatRanger_action"
+			"startTurn" "krl_va_combatRanger_turnStart"
+			"promote" "krl_va_combatRanger_promote"
+			"selectHero" "krl_va_combatRanger_select"
+		}
+	}
+}
+
+
+"MinionRangerLvl2" 
+{
+	"InheritsFrom" "MinionRanger"
+	"nextLevelArchetype" "MinionRangerLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+
+		"health_max" "5"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "5" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "2"
+	}
+}
+
+"MinionRangerLvl3" 
+{
+	"InheritsFrom" "MinionRanger"
+
+	"stats"
+	{
+
+		"level" "3"
+
+		"health_max" "5"
+		"armor_max" "2"
+		"armor_regen_per_turn" "0"
+
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "5" 
+		"rangedAttackMinRange" "2"
+		
+		"walkSpeed" "3"
+	}
+}

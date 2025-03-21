@@ -1,0 +1,3 @@
+"SKILL_ranger_kebab_shot_NAME" = "Kebab Shot"
+"SKILL_ranger_kebab_shot_DESCRIPTION" = "Shoots a piercing arrow that damages all units in its path.\nApplies <style="debuff">bleeding</style> to the first target."
+"SKILL_ranger_kebab_shot_DESCRIPTION_DATA" = "Damage: <style="rangeofdamage">{MinDamage} - {MaxDamage} {icon#damagePhysical}</style>\nBleeding duration: <style="highlight">{bleedingDuration} {icon#turns}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
