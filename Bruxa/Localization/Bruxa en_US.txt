@@ -1,0 +1,4 @@
+"SKILL_bruxa_voodoo_doll_NAME" = "Voodoo Doll"
+"SKILL_bruxa_voodoo_doll_DESCRIPTION" = "After the target is chosen, puts a voodoo doll in an empty hex adjacent to her.\nEach hit to the voodoo doll will cause the target to receive the hit's damage plus an additional <style="damage">1 {icon#damageTrue}</style>."
+"SKILL_bruxa_voodoo_doll_DESCRIPTION_DATA" = "Doll duration: <style="highlight">{duration} {icon#turns}</style>\nRange: <style="highlight">GLOBAL</style>"
+"SKILL_bruxa_voodoo_doll_DESCRIPTION_EXTRA" = "<style="extra">Does not apply status modifiers.\nDoes not affect bosses.</style>"

@@ -1,0 +1,124 @@
+"RLBruxaLvl1"
+{
+	"UniqueId" 					"Bruxa"
+	"Model" 					"HumanBruxa"
+	"MetaExo" 					"ExoSkeletonHumanBruxa_MetaDataAsset"
+	"Name" 						"BRUXA_VOODOO"
+	"InheritsFrom" 				"Hero"
+	"cinematicTags" 			"Heroe|Legend|NeutralLegend|Bruxa|Female|ct_legend|ct_ranged|ct_knowledge|ct_wisdom|ct_magic|UPGRADES_magic"
+	"Background" 				"hero_roster_legend_bg_forest"
+	"Icon" 						"Asst_Banner_Asra"
+	"AttackType" 				"MAGIC"
+	"UnitOnMap" 				"Asst_Party_Bruxa"
+	"PortraitBackgroundColor" 	"a65acc"
+	"nextLevelArchetype" 		"RLBruxaLvl2"
+
+	"stats"
+	{
+		"level" 				"1"
+		"health_max" 			"4"
+		"armor_max" 			"0"
+		"armor_regen_per_turn" 	"0"
+		"baseDamage"  			"5"
+		"rangedAttackRange" 	"3"
+		"rangedAttackMinRange" 	"2"
+		"visualMoveSpeed" 		"2"
+		"visualRunSpeed" 		"2"
+		"walkSpeed" 			"2"
+		"skulls"				"0"
+		"initialSkulls"			"0"
+		"skulls_max"			"1"
+	}
+
+	"skills"
+	{	
+		"10" 	"bruxa_laughing_skulls_trait"
+		"100" 	"magic_endturn_trait"
+		}
+
+		"skillProgression"
+		{
+			"1" 
+			{
+				"1" "bruxa_graveyard_kiss"
+			}
+
+			"2" 
+			{
+				"1" "bruxa_voodoo_blow"
+				"2" "bruxa_voodoo_ritual"
+				"3" "bruxa_voodoo_bomb"
+			}
+
+			"3"
+			{
+				"1" "bruxa_skull_sacrifice"
+				"2" "bruxa_skull_dance"
+				"3" "bruxa_voodoo_doll"
+			}
+		}
+
+		"defaultSkill" 				"bruxa_voodoo_blast"
+
+		"states"
+		{
+			"LEGEND" 				"1"
+		}
+
+		"soundConfig"
+	{	
+		"assetId" "DynamicSoundGroupBruxaSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatBruxa_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatBruxa_death"
+			"useSkill" "krl_va_combatBruxa_action"
+			"startTurn" "krl_va_combatBruxa_turnStart"
+			"promote" "krl_va_combatBruxa_promote"
+			"victory" "krl_va_combatBruxa_victory"
+			"selectHero" "krl_va_combatBruxa_select"
+		}
+	}
+}
+
+"RLBruxaLvl2"
+{
+	"InheritsFrom" 		 "RLBruxaLvl1"
+	"nextLevelArchetype" "RLBruxaLvl3"
+
+	"stats"
+	{
+		"level" 				"2"
+		"health_max" 			"6"
+		"armor_max" 			"0"
+		"armor_regen_per_turn" 	"0"
+		"baseDamage"  			"6"
+		"rangedAttackRange" 	"4"
+		"rangedAttackMinRange" 	"2"
+		"visualMoveSpeed" 		"2"
+		"visualRunSpeed" 		"2"
+		"walkSpeed" 			"2"
+		"skulls_max"			"2"
+	}
+}
+
+"RLBruxaLvl3"
+{
+	"InheritsFrom" 		 "RLBruxaLvl1"
+
+	"stats"
+	{
+		"level" 				"3"
+		"health_max" 			"8"
+		"armor_max" 			"0"
+		"armor_regen_per_turn" 	"0"
+		"baseDamage"  			"8"
+		"rangedAttackRange" 	"5"
+		"rangedAttackMinRange" 	"2"
+		"visualMoveSpeed" 		"2"
+		"visualRunSpeed" 		"2"
+		"walkSpeed" 			"2"
+		"skulls_max"			"3"
+	}
+}
