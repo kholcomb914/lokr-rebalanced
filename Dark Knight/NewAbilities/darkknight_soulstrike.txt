@@ -1,0 +1,141 @@
+"darkknight_soulstrike" 
+{
+     
+    
+    "AbilityBehavior"   "MELEE"
+    "AbilityTeamFilter" "TEAM_ENEMY"
+
+    "AnimationID"   "SpellCastD"
+    "CastFXId" "DarkKinghtSoulStrikeCastFXMega"
+    "Icon" "DarkSmite"
+
+    "AbilityCastRange" "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"   "4"
+    "AbilityAPCost"     "1"
+
+   
+
+    "AbilitySpecial"
+    {
+
+
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            "damage"  "stat(%CASTER, #attackDamage)"
+        }
+
+
+        "02"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "healthGain"            "stat(%CASTER, #attackDamage)"
+        }
+
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "extraDamage"           "2"
+        }
+
+        "04"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "duration"              "2"
+        }
+    }
+
+
+
+    "OnAbilityAction"
+    {
+
+        "Hit"
+        {
+            "Target" "%TARGET"
+            "EffectName" "SoulStrikeHitFXMega" 
+            "Tags" "stringList(#MELEE, #TARGETED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_TRUE"
+                    "Damage"        "expr(%damage)"
+                }
+            }
+
+            "Actions"
+            {
+                "Heal"
+                {
+                    "Target"        "%SOURCE"
+                    "HealAmount"    "expr(%healthGain)"
+                }
+
+                "AttachEffect"
+                {
+                    "EffectName"    "HealingFXMega"
+                    "Target"        "%SOURCE"
+                }
+
+                "#Conditional"
+                {
+                    "Condition"     "isOnState(%TARGET, #DEAD)"
+
+                    "Actions"
+                    {
+                        "MarkHitLegendary"
+                        {
+                        }
+
+                        "ApplyModifier"
+                        {
+                            "ModifierName"    "darkknight_soulstrike_extra_damage"
+                            "Target"          "%CASTER"
+                            "Duration"        "%duration"
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    "Modifiers"
+    {
+        "darkknight_soulstrike_extra_damage"
+        {
+            "EffectName"    "BarbarianBerserkStatusFXMega"
+
+            "Icon"          "Enraged01"
+            "IconPriority"  "50"
+
+            "PropertiesAdd"
+            {
+                "extraDamage"       "%extraDamage"
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "4"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "10"  
+                    }
+                }
+            }
+        }
+    }
+}

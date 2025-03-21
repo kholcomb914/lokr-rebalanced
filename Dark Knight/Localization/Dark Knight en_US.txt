@@ -1,0 +1,13 @@
+"SKILL_darkknight_porcupine_slam_NAME" = "Porcupine Slam"
+"SKILL_darkknight_porcupine_slam_DESCRIPTION" = "Projects his armor's thorns, damaging all enemies within a {aoeRadius}-hex radius."
+"SKILL_darkknight_porcupine_slam_DESCRIPTION_DATA" = "Damage: <style="damage">{thornsDamage} {icon#damagePhysical}</style>\nRange: <style="highlight">SELF</style>"
+"SKILL_darkknight_porcupine_slam_DESCRIPTION_EXTRA" = "<style="extra">Porcupine Slam deals double the Dark Knight's current Armor of Thorns damage.</style>"
+
+"SKILL_darkknight_impervious_NAME" = "Impervious"
+"SKILL_darkknight_impervious_DESCRIPTION" = "Fully restores armor and gains <style="buff">extra armor</style>, reducing all incoming damage and becoming immune to <style="debuff">knockback</style>, <style="debuff">frozen</style> and <style="debuff">immobilized</style> effects.\nRemoves <style="debuff">burning</style> and <style="debuff">poisoned</style> status."
+"SKILL_darkknight_impervious_DESCRIPTION_DATA" = "Extra armor: <style="buff">+{armorBonus} {icon#statArmor}</style>\nDamage reduction: <style="buff">{damageReduction}</style>\nDuration: <style="highlight">{duration} {icon#turns}</style>\nRange: <style="highlight">SELF</style>"
+
+"SKILL_darkknight_soulstrike_NAME" = "Soulstrike"
+"SKILL_darkknight_soulstrike_DESCRIPTION" = "Lands a cursed strike upon the target, dealing armor-piercing damage and healing himself in the process."
+"SKILL_darkknight_soulstrike_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Gains an attack bonus if the target is killed."
+"SKILL_darkknight_soulstrike_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageTrue}</style>\nHealing: <style="buff">{healthGain} {icon#statHP}</style>\nEPIC attack bonus: +{extraDamage}\nEPIC duration: {duration} {icon#turns}\nRange: <style="highlight">MELEE</style>"

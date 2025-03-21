@@ -1,0 +1,115 @@
+"MinionDarkKnight" 
+{
+	"UniqueId" "DarkKnight"
+	"Model" "HumanDarkKnight"
+	"MetaExo" "ExoSkeletonHumanDarkKnight_MetaDataAsset"
+	"Name" "MINION_DARKKNIGHT"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|VeznanFaction|Male|DarkKnight|ct_minion|ct_unholy|ct_might|UPGRADES_mighty"
+	"nextLevelArchetype" "MinionDarkKnightLvl2"
+	"AttackType" "PHYSICAL"
+	"Icon" "Asst_Banner_DarkKnight"
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_DarkKnight"
+	"PortraitBackgroundColor" "323248"
+
+	"stats"
+	{
+		"level" "1"		
+		"health_max" "5"
+		"armor_max" "6"
+		"armor_regen_per_turn" "2"
+		"armor_gain_passTurn" "2"
+		"baseDamage"  "3"
+		"rangedAttackRange" "0" 
+		"walkSpeed" "2"
+		"armorOfThornsDamage"	"1"
+	}
+
+	"skills"
+	{
+		"11" "darkknight_armor_of_thorns_trait"
+		"100" "mighty_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "darkknight_rupture"
+			}
+
+			"2" 
+			{
+				"1" "darkknight_impervious"
+				"2" "darkknight_spike_reforge"
+			}
+
+			"3"
+			{
+				"1" "darkknight_soulstrike"
+				"2" "darkknight_porcupine_slam"
+			}
+		}
+
+		"defaultSkill" "darkknight_slash"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupDarkKnightSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatDarkKnight_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatDarkKnight_death"
+			"useSkill" "krl_va_combatDarkKnight_action"
+			"startTurn" "krl_va_combatDarkKnight_turnStart"
+			"promote" "krl_va_combatDarkKnight_promote"
+			"selectHero" "krl_va_combatDarkKnight_select"
+		}
+	}
+}
+
+
+"MinionDarkKnightLvl2" 
+{
+	"InheritsFrom" "MinionDarkKnight"
+	"nextLevelArchetype" "MinionDarkKnightLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+			
+		"health_max" "6"
+		"armor_max" "7"
+		"armor_regen_per_turn" "3"
+		"armor_gain_passTurn" "2"
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "0" 
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionDarkKnightLvl3" 
+{
+	"InheritsFrom" "MinionDarkKnight"
+
+	"stats"
+	{
+
+		"level" "3"
+			
+		"health_max" "7"
+		"armor_max" "8"
+		"armor_regen_per_turn" "4"
+		"armor_gain_passTurn" "2"
+		"baseDamage"  "6"
+		"armorOfThornsDamage"	"2"
+
+		"rangedAttackRange" "0" 
+		"walkSpeed" "2"
+	}
+}
