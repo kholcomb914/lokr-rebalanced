@@ -1,0 +1,157 @@
+"berserk_trait"
+{
+    "AbilityBehavior"       "PASSIVE"
+
+    "Icon" "Berserker"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"                  "FIELD_FLOAT"
+            "heal"                  "1"
+        }
+
+        "02"
+        {
+            "var_type"                  "FIELD_FLOAT"
+            "extraDamage"                  "2"
+        }
+
+        "03"
+        {
+            "var_type"                  "FIELD_FLOAT"
+            "stunTurns"                  "1"
+        }
+
+        "04"
+        {
+            "var_type" "FIELD_FLOAT"
+            "triggerChance" "50"
+        }
+    }
+
+    "Modifiers"
+    {
+        "berserk_trait_provider_rebalance"
+        {
+            "Passive" "1"
+
+            "OnPostHit"
+            {
+                "Conditional" 
+                {
+                    "Condition" "hitConnected(%HIT) && (randomBetween(0, 1) <= (%triggerChance/100)) && not(isOnState(%TARGET, #STUNNED)) && not(hasModifier(%TARGET, #berserk_trait_state_modifier_rebalance)"
+
+                    "Actions"
+                    {
+                        "ApplyModifier"
+                        {
+                            "ModifierName"    "berserk_trait_state_modifier_rebalance"
+                            "Target"         "%TARGET"
+                        }
+
+                        "PlayAnimation"
+                        {
+                            "Target" "%TARGET"
+                            "Animation" "Berserk"
+                        }
+
+                        "PlaySound"
+                        {
+                            "Sound" "#krl_sfx_combatBarbarian_berserkRitualCast"
+                        }
+
+                        "PlaySound"
+                        {
+                            "Sound" "#krl_sfx_combatBarbarian_berserkActivation"
+                        }
+                    }
+                }
+            }
+        }
+
+        "berserk_trait_state_modifier_rebalance"
+        {
+            
+            "EffectName" "BarbarianBerserkStatusFXMega"
+
+            "Icon" "Enraged01"
+            "IconPriority" "50"
+
+            "OnTurnStarted"
+            {
+                "Heal"
+                {
+                    "Target"        "%TARGET"
+                    "HealAmount"    "%heal"
+                }
+
+                "#AttachEffect"
+                {
+                    "EffectName" "HealingFXMega"
+                    "Target" "%TARGET"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"    "berserk_trait_monitor_modifier_rebalance"
+                    "Target"         "%TARGET"
+                }
+            }
+
+            "PropertiesAdd"
+            {
+                "extraDamage" "%extraDamage"
+            }
+        }
+
+        "berserk_trait_monitor_modifier_rebalance"
+        {
+            "OnTurnFinished"
+            {
+                "RemoveModifier"
+                {
+                    "ModifierName"    "berserk_trait_state_modifier_rebalance"
+                    "Target"         "%TARGET"
+                }
+
+                "ApplyModifier"
+                {
+                    "ModifierName"    "modifier_stunned"
+                    "Target"         "%TARGET"
+                    "Duration" "%stunTurns"
+                }
+
+                "PlaySound"
+                {
+                    "Sound" "#krl_sfx_combatGeneric_stunnedStatus"
+                }
+
+                "RemoveModifier"
+                {
+                    "ModifierName"    "berserk_trait_monitor_modifier_rebalance"
+                    "Target"         "%TARGET"
+                }
+            }
+
+            "OnPostHitGlobal"
+            {
+                "Conditional" 
+                {
+                    "Condition" "hitConnected(%HIT) && equal(%TARGET, %ATTACKER)"
+                    "Actions"
+                    {
+                        "RemoveModifier"
+                        {
+                            "ModifierName"    "berserk_trait_monitor_modifier_rebalance"
+                            "Target"         "%TARGET"
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}

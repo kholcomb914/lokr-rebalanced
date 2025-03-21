@@ -1,0 +1,76 @@
+"barbarian_berserk_ritual"
+{
+    "AbilityBehavior"       "UNIT_TARGET | POSITIVE_EFFECT"
+    "AbilityTeamFilter"     "TEAM_FRIENDLY"
+    "AnimationID"           "Berserk"
+    "CastFXId"              "BarbarianBerserkRitualCastFXMega"
+    "Icon"                  "BerserkRitual"
+    "AbilityCastRange"      "0"
+    "AbilityCooldown"       "3"
+    "AbilityAPCost"         "1"
+
+     "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "healing"           "1"
+        }
+
+        "01"
+        {
+            "var_type"          "FIELD_FLOAT"
+            "healingEpic"       "3"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "Conditional" 
+        {
+            "Condition" "hasModifier(%TARGET, #berserk_trait_state_modifier_rebalance)"
+
+            "Actions"
+            {
+                "RemoveModifier"
+                {
+                    "ModifierName"      "berserk_trait_monitor_modifier_rebalance"
+                    "Target"            "%TARGET"
+                }
+
+                "Heal"
+                {
+                    "Target"            "%TARGET"
+                    "HealAmount"        "%healingEpic"
+                }
+
+                "#AttachEffect"
+                {
+                    "EffectName"        "HealingFXMega"
+                    "Target"            "%TARGET"
+                }
+            }
+
+            "ElseActions"
+            {
+                "ApplyModifier"
+                {
+                    "ModifierName"      "berserk_trait_state_modifier_rebalance"
+                    "Target"            "%TARGET"
+                }
+
+                "Heal"
+                {
+                    "Target"            "%TARGET"
+                    "HealAmount"        "%healing"
+                }
+
+                "#AttachEffect"
+                {
+                    "EffectName"        "HealingFXMega"
+                    "Target"            "%TARGET"
+                }
+            }
+        }        
+    }
+}

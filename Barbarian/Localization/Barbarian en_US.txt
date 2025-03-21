@@ -1,0 +1,10 @@
+"SKILL_barbarian_regeneration_trait_NAME" = "Regeneration"
+"SKILL_barbarian_regeneration_trait_DESCRIPTION" = "When not <style="debuff">poisoned</style>, the Barbarian regenerates HP at the beginning of his turn."
+"SKILL_barbarian_regeneration_trait_DESCRIPTION_DATA" = "HP regeneration: <style="buff">{healForTooltip} {icon#statHP}</style>"
+
+"SKILL_cleave_NAME" = "Cleave"
+"SKILL_cleave_DESCRIPTION" = "Attacks and damages both the target and an adjacent enemy (clockwise)."
+"SKILL_cleave_DESCRIPTION_DATA" = "Main damage: <style="damage">{MaxDamage} {icon#damagePhysical}</style>\nAdjacent damage: <style="damage">{MinDamage} {icon#damagePhysical}</style>\nRange: <style="highlight">MELEE</style>"
+
+"COMBAT_MODIFIER_berserk_trait_state_modifier_rebalance_TITLE" = "Berserk"
+"COMBAT_MODIFIER_berserk_trait_state_modifier_rebalance_DESCRIPTION" = "The barbarian is on a frenzy that grants him <style="buff">+{extraDamage} damage</style> and <style="buff">+{heal} regeneration</style>.\nIf the barbarian doesn't attack while berserk, it will become <style="concept">stunned</style> for {stunTurns} {icon#turns}."
