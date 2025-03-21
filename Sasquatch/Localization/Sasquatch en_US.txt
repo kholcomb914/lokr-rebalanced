@@ -1,0 +1,9 @@
+"SKILL_sasquatch_mighty_blow_NAME" = "Mighty Blow"
+"SKILL_sasquatch_mighty_blow_DESCRIPTION" = "Pounds an enemy, dealing damage and applying <style="concept">knockback</style> and <style="concept">stunned</style>."
+"SKILL_sasquatch_mighty_blow_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Enhanced <style="concept">stunned</style> effect on <style="debuff">weakened</style> targets."
+"SKILL_sasquatch_mighty_blow_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damagePhysical}</style>\nStunned duration: <style="concept">{stunDuration} {icon#turns}</style>\nEPIC stunned duration: <style="highlight">{stunDurationExtra} {icon#turns}</style>\nRange: <style="highlight">MELEE</style>"
+
+"SKILL_sasquatch_abominable_chomp_NAME" = "Abominable Chomp"
+"SKILL_sasquatch_abominable_chomp_DESCRIPTION" = "Fiercely bites an enemy, dealing damage and healing himself by the same amount."
+"SKILL_sasquatch_abominable_chomp_DESCRIPTION_EPIC" = "<style="epic">EPIC:</style> Applies bleeding to <style="debuff">immobilized</style> targets."
+"SKILL_sasquatch_abominable_chomp_DESCRIPTION_DATA" = "Damage: <style="damage">{damage} {icon#damageTrue}</style>\nRange: <style="highlight">MELEE</style>"

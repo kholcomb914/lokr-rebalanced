@@ -1,0 +1,89 @@
+"sasquatch_abominable_chomp"
+{
+    "AbilityBehavior"       "MELEE"
+    "AbilityTeamFilter"     "TEAM_ENEMY"
+    "AbilityCastRange"      "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"       "3"
+    "AbilityAPCost"         "1"
+
+    "CastFXId"              "SasquatchAbominableChompCastFXMega"
+    "AnimationID"           "SpellCastD"
+    "Icon"                  "AbominableChomp" 
+
+    "AbilitySpecial"
+    {
+        "01" 
+        {
+            "var_type"      "FIELD_EXPRESSION"
+            "damage"        "ceil(2*stat(%CASTER, #attackDamage)/3)"
+        }
+
+        "02" 
+        {
+            "var_type"      "FIELD_EXPRESSION"
+            "damage"        "ceil(2*stat(%CASTER, #attackDamage)/3)"
+        }
+
+        "03"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "dotDuration"                "2"
+        }
+
+    }
+
+    "OnAbilityAction"
+    {
+        "Hit"
+        {
+            "Target"            "%TARGET"
+            "EffectName"        "WulfRuptureHitFXMega"
+            "Tags"              "stringList(#MELEE, #TARGETED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_TRUE"
+                    "Damage"        "expr(%damage)"
+                }
+
+                "Conditional"
+                {
+                    "Condition" "isOnState(%TARGET, #IMMOBILIZED)"
+
+                    "Actions" 
+                    {
+                        "ApplyModifier"
+                        {
+                            "ModifierName"  "modifier_new_bleeding"
+                            "Target"        "%HITTARGET"
+                            "Duration"      "%dotDuration"
+                            "Refresh"   "1"
+                            
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+                }
+            }
+
+            "Actions"
+            {
+                "Heal"
+                {
+                    "Target"        "%SOURCE"
+                    "HealAmount"    "hitEffectiveDamage(%HIT)"
+                }
+
+                "AttachEffect"
+                {
+                    "EffectName"    "HealingFXMega"
+                    "Target"        "%SOURCE"
+                }
+            }
+        }
+    }
+}

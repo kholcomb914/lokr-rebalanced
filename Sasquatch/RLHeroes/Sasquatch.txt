@@ -1,0 +1,133 @@
+"MinionSasquatch" 
+{
+	"UniqueId" "Sasquatch"
+	"Model" "Sasquatch"
+	"MetaExo" "ExoSkeletonSasquatch_MetaDataAsset"
+	"Name" "MINION_SASQUATCH"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Male|Sasquatch|ct_minion|ct_might|ct_perception|ct_survival|UPGRADES_mighty|LOCKED"
+	"nextLevelArchetype" "MinionSasquatchLvl2"
+	"Icon" "Asst_Banner_Knight" 
+	"Background" "hero_roster_companion_bg_forest"
+	"AttackType" "PHYSICAL"
+	"UnitOnMap" "Asst_Party_Sasquatch"		
+	"PortraitBackgroundColor" "bf9d2f"
+
+	"stats"
+	{
+
+		"level" "1"
+			
+		"health_max" "10"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "5"
+		"sasquatch_regeneration" "1"
+
+		"rangedAttackRange" "3" 
+		
+		"walkSpeed" "1"
+	}
+
+	"skills"
+	{
+		"11" "sasquatch_regeneration_trait"
+			"100" "mighty_endturn_trait"
+			"200" 	"custom_step_sound_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "sasquatch_mudball_throw"
+			}
+
+			"2" 
+			{
+				"1" "sasquatch_mighty_blow"
+				"2" "sasquatch_ground_spike"
+			}
+
+			"3"
+			{
+				"1" "sasquatch_abominable_growl"
+				"2" "sasquatch_abominable_chomp"
+			}
+		}
+
+		"defaultSkill" "sasquatch_smash"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupSasquatchSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatSasquatch_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatSasquatch_death"
+			"useSkill" "krl_va_combatSasquatch_action"
+			"startTurn" "krl_va_combatSasquatch_turnStart"
+			"promote" "krl_va_combatSasquatch_promote"
+			"selectHero" "krl_va_combatSasquatch_select"
+			"selectHero" "krl_va_combatSasquatch_select"
+			"abominableGrunt" "krl_va_combatSasquatch_abominableGrunt"
+			"walk" ""
+			"step" "krl_sfx_combatGeneric_heavyFootsteps"
+		}
+	}
+}
+
+
+"MinionSasquatchLvl2" 
+{
+	"InheritsFrom" "MinionSasquatch"
+	"nextLevelArchetype" "MinionSasquatchLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+			
+		"health_max" "12"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "6"
+		"sasquatch_regeneration" "1"
+
+		"rangedAttackRange" "3" 
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionSasquatchLvl3" 
+{
+	"InheritsFrom" "MinionSasquatch"
+
+	"stats"
+	{
+
+		"level" "3"
+			
+		"health_max" "15"
+		"armor_max" "0"
+		"armor_regen_per_turn" "0"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "7"
+		"sasquatch_regeneration" "2"
+
+		"rangedAttackRange" "3" 
+		
+		"walkSpeed" "2"
+	}
+}

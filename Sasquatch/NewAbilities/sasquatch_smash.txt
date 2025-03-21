@@ -1,0 +1,325 @@
+"sasquatch_smash"
+{
+    
+    
+    "AbilityBehavior"   "MELEE"
+    "AbilityTeamFilter" "TEAM_ENEMY"
+    "AbilityCastRange" "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"   "0"
+    "AbilityAPCost"     "stat(%CASTER, #attackCostAP)"
+    
+    "AnimationID"   "Attack"
+    "Icon" "SasquatchSmash"
+
+    "AbilitySpecial" 
+    {
+        "01"
+        {
+            "var_type" "FIELD_EXPRESSION"
+            
+            "MinDamage"  "ceil(stat(%CASTER,#attackDamage))-1"
+        }
+
+        "02"
+        {
+            "var_type" "FIELD_EXPRESSION"        
+            
+            "MaxDamage"  "ceil(stat(%CASTER,#attackDamage))"
+        }
+
+         "05"
+        {
+            "var_type"          "FIELD_EXPRESSION"
+            "splashDamage"      "floor(stat(%CASTER,#attackDamage)/2)"
+        }
+    }
+
+    "OnCustomTargeting"
+    {
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"        "hexPosition(hexNeighbour(unitHex(%TARGET), %DESTINATIONHEXA, -2))"
+                "Radius"        "0"
+                "Teams"         "TEAM_ENEMY"
+                "ExcludedUnits" "objectList(%SOURCE)"
+            }
+
+            "IteratorName"      "#newTarget"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Unit"      "%newTarget"
+                }
+            }
+        }
+
+        "ActOnHexas"
+        {
+            "Center"            "hexNeighbour(unitHex(%TARGET), %DESTINATIONHEXA, -2)"
+            "Range"             "0"
+            "IteratorName"      "#hexa"
+        
+            "Actions"
+            {
+                "AddAsAffected"
+                {
+                    "Hexa"      "%hexa"
+                }
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"        "hexPosition(hexNeighbour(unitHex(%TARGET), %DESTINATIONHEXA, -3))"
+                "Radius"        "0"
+                "Teams"         "TEAM_ENEMY"
+                "ExcludedUnits" "objectList(%SOURCE)"
+            }
+
+            "IteratorName"      "#newTarget"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Unit"      "%newTarget"
+                }
+            }
+        }
+
+        "ActOnHexas"
+        {
+            "Center"            "hexNeighbour(unitHex(%TARGET), %DESTINATIONHEXA, -3)"
+            "Range"             "0"
+            "IteratorName"      "#hexa"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Hexa"      "%hexa"
+                }
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"        "hexPosition(hexNeighbour(unitHex(%TARGET), %DESTINATIONHEXA, -4))"
+                "Radius"        "0"
+                "Teams"         "TEAM_ENEMY"
+                "ExcludedUnits" "objectList(%SOURCE)"
+            }
+
+            "IteratorName"      "#newTarget"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Unit"      "%newTarget"
+                }
+            }
+        }
+
+        "ActOnHexas"
+        {
+            "Center"            "hexNeighbour(unitHex(%TARGET), %DESTINATIONHEXA, -4)"
+            "Range"             "0"
+            "IteratorName"      "#hexa"
+        
+            "Actions"    
+            {
+                "AddAsAffected"
+                {
+                    "Hexa"      "%hexa"
+                }
+            }
+        }
+    }
+
+    "OnAbilityAction"
+    {
+
+        "Hit"
+        {
+            "Target"            "%TARGET"
+            "EffectName"        "SasquatchSmashHitFXMega" 
+            "Tags"              "stringList(#MELEE, #TARGETED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_PHYSICAL"
+                    "Damage"        "randomI(expr(%MinDamage), expr(%MaxDamage))"
+                }
+            }
+
+            "Actions"
+            {
+                "Knockback" 
+                {
+                    "Target" "%HITTARGET"
+                    "Center" "unitPosition(%HITSOURCE)"
+                    "Strength" "1"
+                }
+
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"            "hexPosition(hexNeighbour(unitHex(%TARGET), unitHex(%SOURCE), -2))"
+                "ExcludedUnits"     "objectList(%SOURCE,%TARGET)"
+                "Radius"            "0"
+                "Teams"             "TEAM_ENEMY"
+            }
+
+            "IteratorName"          "#newTarget"
+        
+            "Actions"    
+            {
+                "Hit"
+                {
+                    "Target"            "%newTarget"
+                    "EffectName"        "GenericHitFXMega" 
+                    "Tags"              "stringList(#MELEE, #TARGETED)"
+
+                    "InitActions"
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%splashDamage)"
+                        }
+                    }
+
+                    "Actions"
+                    {
+                        "Knockback" 
+                        {
+                            "Target" "%HITTARGET"
+                            "Center" "unitPosition(%TARGET)"
+                            "Strength" "1"
+                        }
+                    }
+                }
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"            "hexPosition(hexNeighbour(unitHex(%TARGET), unitHex(%SOURCE), -3))"
+                "ExcludedUnits"     "objectList(%SOURCE,%TARGET)"
+                "Radius"            "0"
+                "Teams"             "TEAM_ENEMY"
+            }
+
+            "IteratorName"          "#newTarget"
+        
+            "Actions"    
+            {
+                "Hit"
+                {
+                    "Target"            "%newTarget"
+                    "EffectName"        "GenericHitFXMega" 
+                    "Tags"              "stringList(#MELEE, #TARGETED)"
+
+                    "InitActions"
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%splashDamage)"
+                        }
+                    }
+
+                    "Actions"
+                    {
+                        "Knockback" 
+                        {
+                            "Target"        "%HITTARGET"
+                            "Center"        "unitPosition(%TARGET)"
+                            "Strength"      "1"
+                        }
+                    }
+                }
+            }
+        }
+
+        "ActOnTargets"
+        {
+            "Target"
+            {
+                "Center"            "hexPosition(hexNeighbour(unitHex(%TARGET), unitHex(%SOURCE), -4))"
+                "ExcludedUnits"     "objectList(%SOURCE,%TARGET)"
+                "Radius"            "0"
+                "Teams"             "TEAM_ENEMY"
+            }
+
+            "IteratorName"          "#newTarget"
+        
+            "Actions"    
+            {
+                "Hit"
+                {
+                    "Target"            "%newTarget"
+                    "EffectName"        "GenericHitFXMega" 
+                    "Tags"              "stringList(#MELEE, #TARGETED)"
+
+                    "InitActions"
+                    {
+                        "AddDamage"
+                        {
+                            "Type"          "DAMAGE_PHYSICAL"
+                            "Damage"        "expr(%splashDamage)"
+                        }
+                    }
+
+                    "Actions"
+                    {
+                        "Knockback" 
+                        {
+                            "Target"        "%HITTARGET"
+                            "Center"        "unitPosition(%TARGET)"
+                            "Strength"      "1"
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "2.3"
+            "Considerations"
+            {
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "10"  
+                    }
+                }
+            }
+        }
+    }
+
+}
