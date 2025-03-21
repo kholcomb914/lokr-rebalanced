@@ -1,0 +1,100 @@
+"gerald_avenging_blade"
+{
+    "AbilityBehavior"       "MELEE"
+    "AbilityTeamFilter"     "TEAM_ENEMY"
+    "AbilityCastRange"      "stat(%CASTER, #meleeRange)"
+    "AbilityCooldown"       "3"
+    "AbilityAPCost"         "2"
+
+    "AnimationID"           "SpecialAttackB"
+    "Icon"                  "AvengingBlade"
+    "CastFXId"              "GeraldAvengingBladeCastFXMega"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_EXPRESSION"
+            "attackDamage"          "stat(%CASTER, #attackDamage)"
+        }
+
+        "02"
+        {
+            "var_type"              "FIELD_EXPRESSION"        
+            "missingHealth"         "stat(%CASTER, #health_missing)"
+        }
+
+        "03"
+        {
+            "var_type"              "FIELD_EXPRESSION"        
+            "damage"                "expr(%attackDamage) + expr(%missingHealth)"
+        }
+    }
+
+    "OnAbilityAction"
+    {
+        "Hit"
+        {
+            "Target"        "%TARGET"
+            "EffectName"    "GeraldAvengingBladeHitFXMega" 
+            "Tags"          "stringList(#MELEE, #TARGETED)"
+
+            "InitActions"
+            {
+                "AddDamage"
+                {
+                    "Type"          "DAMAGE_PHYSICAL"
+                    "Damage"        "expr(%damage)"
+                }
+            }
+
+            "Actions"
+            {
+                "Conditional"
+                {
+                    "Condition"     "isOnState(%TARGET, #DEAD)"
+
+                    "Actions" 
+                    {
+                        "Heal"
+                        {
+                            "Target"        "%SOURCE"
+                            "HealAmount"    "ceil(hitEffectiveDamage(%HIT)/2)"
+                        }
+
+                        "AttachEffect"
+                        {
+                            "EffectName"    "GeraldAvengingBladeHealingFXMega"
+                            "Target"        "%SOURCE"
+                        }
+
+                        "MarkHitLegendary"
+                        {
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    "AIConfigB"
+    {
+        "Selection" 
+        {
+            "Weight" "4"
+            "Considerations"
+            {
+
+                "Priorizacion Por Distance mas cercano"
+                {
+                    "Curve" "Linear|-0.1|1|1|0"
+                    "Consideration" "DistanceToTarget"
+                    "Params"
+                    {
+                        "MaxRange" "10"  
+                    }
+                }
+            }
+        }
+    }
+}

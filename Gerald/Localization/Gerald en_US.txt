@@ -1,0 +1,4 @@
+"SKILL_gerald_martyrs_prayer_NAME" = "Martyr's Prayer"
+"SKILL_gerald_martyrs_prayer_DESCRIPTION" = "Gerald spends HP to heal an ally and remove <style="debuff">weakened</style> and <style="debuff">immobilized</style> effects."
+"SKILL_gerald_martyrs_prayer_DESCRIPTION_DATA" = "HP cost: <style="damage">{healthSpent} {icon#statHP}</style>\nHealing: <style="buff">{heal} {icon#statHP}</style>\nRange: <style="highlight">{AbilityCastRange}</style>"
+"SKILL_gerald_martyrs_prayer_DESCRIPTION_EXTRA" = "<style="extra">Gerald cannot target himself.</style>"

@@ -1,0 +1,127 @@
+"RLHumanGeraldLightSeekerLvl1" 
+{
+	"UniqueId" "Gerald"
+	"Model" "HumanGeraldLightSeeker"
+	"MetaExo" "ExoSkeletonHumanGeraldLightSeeker_MetaDataAsset"
+	"Name" "GERALD_LIGHTSEEKER"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Legend|GoodLegend|Gerald|Male|ct_legend|ct_holy|ct_might|ct_wisdom|ct_social|UPGRADES_mighty"
+	"nextLevelArchetype" "RLHumanGeraldLightSeekerLvl2"
+	"Icon" "Asst_Banner_Lightseeker" 
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_Gerald"
+	"AttackType" "PHYSICAL"
+	"PortraitBackgroundColor" "f5ee93"
+
+	"stats"
+	{
+
+		"level" "1"
+		"health_max" "7"
+		"armor_max" "6"
+		"baseDamage"  "4"
+		"armor_regen_per_turn" "2"
+		"armor_gain_passTurn" "2"
+		
+		"rangedAttackRange" "3" 
+		
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" "gerald_ajaxs_blessing"
+		"100" "mighty_endturn_trait"
+
+
+		}
+
+		"skillProgression"
+		{
+		"1" 
+			{
+				"1" "shield_of_retribution"
+			}
+
+			"2" 
+			{
+				"1" "gerald_divine_blade"
+				"2" "gerald_glorious_swipe"
+				"3" "gerald_avenging_blade"
+			}
+
+			"3"
+			{
+				"1" "gerald_martyrs_prayer"
+				"2" "gerald_martyrs_inspiration"
+				"3" "gerald_rally"
+			}
+		}
+
+		"defaultSkill" "gerald_swing"
+
+		"states"
+		{
+			"LEGEND" "1"
+		}
+
+	"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupGeraldSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatGerald_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatGerald_death"
+			"useSkill" "krl_va_combatGerald_action"
+			"startTurn" "krl_va_combatGerald_turnStart"
+			"promote" "krl_va_combatGerald_promote"
+			"victory" "krl_va_combatGerald_victory"
+			"selectHero" "krl_va_combatGerald_select"
+		}
+	}
+}
+
+"RLHumanGeraldLightSeekerLvl2" 
+{
+	"InheritsFrom" "RLHumanGeraldLightSeekerLvl1"
+	"nextLevelArchetype" "RLHumanGeraldLightSeekerLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+		"health_max" "9"
+		"armor_max" "6"
+		"baseDamage"  "6"
+		"armor_regen_per_turn" "2"
+		"armor_gain_passTurn" "2"
+		
+		"rangedAttackRange" "3" 
+		
+		
+		"walkSpeed" "2"
+	}
+}
+
+"RLHumanGeraldLightSeekerLvl3" 
+{
+	"InheritsFrom" "RLHumanGeraldLightSeekerLvl1"
+
+	"stats"
+	{
+
+		"level" "3"
+		"health_max" "11"
+		"armor_max" "7"
+		"baseDamage"  "8"
+		"armor_regen_per_turn" "3"
+		"armor_gain_passTurn" "2"
+		
+		"rangedAttackRange" "3" 
+		
+		
+		"walkSpeed" "2"
+	}
+}
