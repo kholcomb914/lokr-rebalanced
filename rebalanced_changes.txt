@@ -1,0 +1,121 @@
+LOKR Proposed Balance Changes
+*Most of these changes have been suggested in the rebalanced discussion, but a fair few of them were my own ideas.*
+
+REG'SON
+ - 	HP increased to 9/11/13; +3 at levels 1 and 2, +2 at level 3
+ -	Armor decreased to 0/0/0; -2 at all levels
+ -	Attack increased to 5/7/9; +1 at level 3
+ -	Eldritch Heal: now heals when an enemy is killed within range 2 of him, regardless of whether he is the one to kill it (might need to nerf, but we'll see)
+ -	Eldritch Syphon: now receives –[level] magic damage reduction
+ -	Eldritch Blades: true damage strike increased to floor([attack]/2) (instead of 3+1 damage at level 1 he will deal 3+2)
+ -	Blood Veil: if in eldritch state when the ability is used (not when Reg'son takes the hit), now deals equivalent damage retribution to the target (work in progress)
+ -	Shadow Uppercut (melee): damage increased to [attack]+2 (the target-switching effect is really just knockback but in the opposite direction, so I increased the attack's stats to better match up with other 'strong' melee attacks that deal knockback, like Brutal Cleave, Rupture, Branchball, etc.)
+
+GERALD
+ -	HP decreased to 7/9/11; -1 at all levels
+ -	Armor increased to 6/6/7; +1 at all levels (Bravebark already exists as a pure damage sponge, so I would like there to be at least a little distinction between him and Gerald as far as resistance to physical attacks goes)
+ -	Divine Blade: damage increased to floor(4*[attack]/3) true damage, remains a full action (it would also possibly make sense to give it [attack] damage but make it a regular action)
+ -	Avenging Blade: damage increased to [attack]+[missing HP] (basically just un-nerfed it)
+ -	Martyr’s Prayer: healing increased to 6 HP; now removes stunned/asleep/rooted
+
+ASRA
+ -	Damage increased to 5/6/7; +1 at level 2
+ -	Armor increased to 2/2/3; +1 at level 3
+ -	Spider Bite: can now use remaining movement after use; epic effect now inflicts sleep for 2 turns in addition to dealing 3 bonus true damage (2-turn sleep duration is usually redundant as the poison will wake the target up after 1 turn, but against poison-immune enemies the full duration might be useful) 
+
+OLOCH
+ -	Burning Claw: damage increased to [attack]-2, cooldown reduced to 2, epic effect now stuns weakened enemies (gives it self-synergy with his other skills like Seal of Immolation)
+ -	Fire Barrier: changes already implemented
+
+BRUXA
+ -	HP decreased to 4/6/8; -1 at all levels
+ -	Speed increased to 2/2/3; +1 at level 3
+ -	Range decreased to 3/4/4; -1 at level 3
+ -	Attack increased to 5/6/8; +1 at all levels (should at least give her enough damage to partially offset Oloch's far superior skillset)
+ -	Voodoo Doll: each hit on the doll now deals [damage]+1 to the target (works the same as damage reduction but in the opposite direction)
+
+BRAVEBARK
+ -	Seismic Pound: changed to a regular action (it isn't a particularly strong skill anyway, so having it be a full action made no sense)
+
+DARK KNIGHT
+ -	HP increased to 5/6/7; +1 at all levels
+ -	Armor decreased to 6/7/8; -1 at all levels (still has the highest armor stat of any hero, but at least now isn't completely useless against non-physical attacks)
+ -	Impervious: now grants -1 damage reduction for the duration and makes the Dark Knight immune to knockback, asleep, stunned, and rooted (now actually lives up to its name, and should mean that the Dark Knight doesn't take damage from negative status effects, though that obviously requires a shorter duration)
+ -	Soulstrike: changed to a regular action, now deals true damage and heals the Dark Knight by the same damage, epic effect grants the dark knight +2 attack for 2 turns if the target dies (now there are two equally-viable upgrade paths with the dark knight: the damage-focused path with spiked reforge and porcupine slam, and the tanking-focused path with impervious and soul strike)
+
+KNIGHT
+ -	HP increased to 6/7/9; +1 at all levels
+ -	Armor decreased to 5/6/7; -1 at levels 1 and 2, -2 at level 3 (done to distinguish from the revamped Dark Knight and should also make it more feasible for her to tank against non-physical damage)
+ -	Hold the Line: now also removes stunned and rooted
+ -	Gain Terrain: damage increased to a constant [attack]-1
+ -	Shieldarang: damage formula changed to ceil([attack]/2), adds an epic effect that stuns weakened enemies for 1 turn
+
+WITCH DOCTOR
+ -	Range increased to 4/5/6; +1 at level 1
+ -	Shamanic Heal: heal changed to [attack]
+ -	Force of Nature: pull increased to 2 hexes, push increased to 3 hexes (makes it actually do something potentially useful instead of being just another damage skill)
+ -	Tainted Healing: range increased to [range] (no reason for it to be a lower range than his basic attack, especially since it's a full action)
+ -	Healing Totem: heal increased to 2 HP/turn (strength is now more fitting of its full action status)
+
+SORCERESS
+ -	Attack increased to 4/5/6; +1 at level 2
+ -	Cursed blast: damage formula changed to a constant [attack]-2; base damage is now 2/3/4 instead of 2-3/2-3/3-4 (also makes her attack scale much better with damage boosts)
+ -	Rotting Curse: poison duration increased to 2, cooldown reduced to 3 (the skill is still not strong at all, so keeping the 4-turn cooldown is fairly ridiculous)
+ -	Punishing Curse: damage multiplier changed to [level]+2, cooldown reduced to 0 (not sure why, but cooldown seems to be bugged to remain at 2 in-game)
+ -	Trebuchet: cooldown increased to 4, now deals [attack] damage to all enemies in AOE, instead of just the main target, stuns the main target
+
+ ZAPPER
+ -	HP decreased to 4/6/7; -1 at level 3
+ -	Shocking presence: now triggers at the end of the turn instead of the beginning
+ -	Raise coil: damage increased to a flat 3 (up from 2-3), cooldown reduced to 2
+ -	Magnetic Trap: cooldown increased to 4 (I don't usually like nerfing stuff, but considering this is possibly the most broken ability in the game, I'd say it deserves a slight cooldown increase.)
+
+BOMBARDIER
+ -	HP increased to 4/5/6; +1 at level 3
+ -	Attack increased to 3/4/5; +1 at level 1
+
+RANGER
+ - Kebab Shot: now deals a constant ceil([attack]/2) physical damage (having variance on such a low-damage skill just feels odd)
+
+SASQUATCH
+ -	HP increased to 10/12/15; +2 at levels 1 and 2, +1 at level 3
+ -	Attack increased to 5/6/7; +1 at all levels (for such a slow unit with no armor and just decent regeneration, his attack stat desperately needed a buff)
+ -	Mudball Throw: cooldown reduced to 2, splash damage formula changed to floor([attack]/2)
+ -	Mighty Blow: damage increased to [attack]+2, adds epic effect to stun target for an extra turn if weakened (might be a bit too strong now, but we'll see)
+ -	Abominable Chomp: damage and heal increased to ceil(2*[attack]/3), adds epic effect to inflict bleed if target is immobilized (given that his only reliable healing skill is locked behind level 3, it needs to be at least worthwhile to use over his group stun)
+
+SYLVAN ELF
+ -	Armor increased to 2/3/4; +1 at all levels
+ -	Attack increased to 4/5/6; +1 at all levels
+ -	Living Bow: damage formula changed to [attack]-1 (this makes damage without any sharpening stones equal to 3/4/5 instead of 3/3/4)
+ -	Sylvan Volley: damage per arrow decreased to [attack]-1
+ -	Woodland Stride: damage increased to ceil([attack]*0.8)) (is still worse than Skirmish, but it is at least viable now)
+ -  Skirmish: damage per arrow decreased to [attack]-1; still deals the same base damage as before the Sylvan Elf's overall stat buffs, but this was one skill that absolutely did not need an attack buff
+
+ORC CLEAVER
+ -	Parry Stance: damage reduction does not apply to magic attacks
+
+BARBARIAN
+ -	Cleave: now deals max damage to target enemy and min damage to clockwise enemy instead of randomly distributing damage (for example, at level 1, the barbarian's attack damage used to be 4-6, but now Cleave deals 6 damage to the primary target and 4 damage to the adjacent target)
+ -	Gains 1 innate health regeneration when not poisoned
+ -	Berserk chance increased to 50%
+ -	Berserk now heals only +1 HP (combined with innate regeneration, net heal should still be +2 when berserk)
+ -	Berserk Ritual: heal/epic heal decreased to +1/+3 (but total heal when not poisoned is still the same; ideally this will make his second L2 skill more viable since berserk ritual now isn’t the only way for the Barbarian to reliably heal himself)
+
+CLERIC
+ -	Attack increased to 4/5/6; +1 at levels 2 and 3 ()
+ -	Armor decreased to 3/4/5; -1 at all levels (felt a bit too tanky especially at levels 2 and 3; 8 HP plus 6 armor would have made the Dark Knight and Knight a bit less viable especially considering the strength of the Cleric's support skills)
+ -	Armor regen increased to 1/1/2 (this at least somewhat makes up for his armor nerf and his lack of the fortify trait)
+
+ASSASSIN
+-	Speed increased to 3/3/4
+-	HP increased to 4/5/7
+-	Attack increased to 5/7/8
+-	Dodge chance changed to a flat 40% at all levels
+-	Aimed Slash: epic backstab damage lowered to ceil([attack]/3)
+-	Counterattack: changed to a free action and switched with quick step to level 3
+-	Quick step: switched with counterattack to level 2
+-	Backstab: epic effect increases dodge chance to 70% for 1 turn if target is killed
+
+NECROMANCER
+ -	HP increased to 4/5/7; +2 at level 3
