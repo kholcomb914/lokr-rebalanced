@@ -1,0 +1,125 @@
+"MinionOrcCleaver"
+{
+	"UniqueId" "OrcCleaver"
+	"Model" "OrcCleaver"
+	"MetaExo" "ExoSkeletonOrcCleaver_MetaDataAsset"
+	"Name" "MINION_ORC_CLEAVER"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Minion|Male|OrcCleaver|ct_minion|ct_might|ct_perception|ct_survival|UPGRADES_mighty|LOCKED"
+	"nextLevelArchetype" "MinionOrcCleaverLvl2"
+	"Icon" "Asst_Banner_Knight" 
+	"Background" "hero_roster_companion_bg_forest"
+	"AttackType" "PHYSICAL"
+	"UnitOnMap" "Asst_Party_OrcCleaver"		
+	"PortraitBackgroundColor" "708B8E"
+
+	"stats"
+	{
+
+		"level" "1"
+			
+		"health_max" "6"
+		"armor_max" "3"
+		"armor_regen_per_turn" "1"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "5"
+
+		"rangedAttackRange" "0" 
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"11" "counter_stance"
+			"100" "mighty_endturn_trait"
+		}
+
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "cleaver_brutal_strike"
+			}
+
+			"2" 
+			{
+				"1" "cleaver_pommel_strike"
+				"2" "cleaver_parry_stance"
+			}
+
+			"3"
+			{
+				"1" "cleaver_whirlwind_strike"
+				"2" "cleaver_undying_rage"
+			}
+		}
+
+		"defaultSkill" "cleaver_slash"
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupOrcCleaverSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatOrcCleaver_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatOrcCleaver_death"
+			"useSkill" "krl_va_combatOrcCleaver_action"
+			"startTurn" "krl_va_combatOrcCleaver_turnStart"
+			"promote" "krl_va_combatOrcCleaver_promote"
+			"selectHero" "krl_va_combatOrcCleaver_select"
+		}
+	}
+}
+
+
+"MinionOrcCleaverLvl2" 
+{
+	"InheritsFrom" "MinionOrcCleaver"
+	"nextLevelArchetype" "MinionOrcCleaverLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+			
+		"health_max" "7"
+		"armor_max" "4"
+		"armor_regen_per_turn" "2"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "6"
+
+		"rangedAttackRange" "0" 
+		
+		"walkSpeed" "2"
+	}
+}
+
+
+"MinionOrcCleaverLvl3" 
+{
+	"InheritsFrom" "MinionOrcCleaver"
+
+	"stats"
+	{
+
+		"level" "3"
+			
+		"health_max" "9"
+		"armor_max" "6"
+		"armor_regen_per_turn" "3"
+
+		"armor_gain_passTurn" "2"
+
+		"baseDamage"  "7"
+
+		"rangedAttackRange" "0" 
+		
+		"walkSpeed" "2"
+	}
+}
