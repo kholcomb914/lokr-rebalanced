@@ -1,0 +1,126 @@
+"RLBravebarkLvl1" 
+{
+	"UniqueId" "Bravebark"
+	"Model" "Bravebark"
+	"MetaExo" "ExoSkeletonBraveBark_MetaDataAsset"
+	"Name" "BRAVEBARK"
+	"InheritsFrom" "Hero"
+	"cinematicTags" "Heroe|Legend|NeutralLegend|Bravebark|NeutralFaction|Male|ct_legend|ct_might|ct_survival|ct_wisdom|UPGRADES_mighty"
+	"nextLevelArchetype" "RLBravebarkLvl2"
+	"AttackType" "PHYSICAL"
+	"Icon" "Asst_Banner_Lightseeker" 
+	"Background" "hero_roster_legend_bg_forest"
+	"UnitOnMap" "Asst_Party_BraveBark"
+	"PortraitBackgroundColor" "5a4424"
+
+	"stats"
+	{
+		"level" "1"
+			
+		"health_max" "9"
+		"armor_max" "2"
+		"armor_regen_per_turn" "1"
+		"armor_gain_passTurn" "2"
+		"baseDamage"  "4"
+
+		"rangedAttackRange" "3" 
+		"rangedAttackMinRange" "0"
+		
+		"visualMoveSpeed" "0.75" 
+		"visualRunSpeed" "0.75"
+		
+		"walkSpeed" "2"
+	}
+
+	"skills"
+	{
+		"100" "bravebark_thickbark_trait"
+		"200" "bravebark_springsap_trait"
+		"101" 	"mighty_endturn_trait"
+		"200" 	"custom_step_sound_trait"
+		}
+	
+	"skillProgression"
+		{
+			"1" 
+			{
+				"1" "bravebark_branchball"
+			}
+
+			"2" 
+			{
+				"1" "bravebark_rootspike"
+				"2" "bravebark_natures_wrath"
+				"3" "bravebark_seismic_pound"
+			}
+
+			"3"
+			{	
+				"1" "bravebark_wood_wide_web"
+				"2" "bravebark_pulling_vines"
+				"3" "bravebark_hearts_bark"
+			}
+		}
+
+		"defaultSkill" "bravebark_branchbat"
+
+		"states"
+		{
+			"LEGEND" 				"1"
+		}
+
+		"soundConfig"
+	{
+		"assetId" "DynamicSoundGroupBravebarkSounds"
+		"sounds"
+		{
+			"receiveDamage" "krl_va_combatBravebark_hit"
+			"receiveArmorDamage" "krl_sfx_combatGeneric_armorHit"
+			"death" "krl_va_combatBravebark_death"
+			"useSkill" "krl_va_combatBravebark_action"
+			"startTurn" "krl_va_combatBravebark_turnStart"
+			"promote" "krl_va_combatBravebark_promote"
+			"selectHero" "krl_va_combatBravebark_select"
+			"victory" "krl_va_combatBravebark_victory"
+			"walk" ""
+			"step" "krl_sfx_combatGeneric_heavyFootsteps"
+		}
+	}
+}
+
+
+"RLBravebarkLvl2" 
+{
+	"InheritsFrom" 			"RLBravebarkLvl1"
+	"nextLevelArchetype" 	"RLBravebarkLvl3"
+
+	"stats"
+	{
+
+		"level" "2"
+			
+		"health_max" "12"
+		"armor_max" "3"
+		"baseDamage"  "5"
+
+	}
+}
+
+
+"RLBravebarkLvl3" 
+{
+	"InheritsFrom" "RLBravebarkLvl1"
+
+	"stats"
+	{
+
+		"level" "3"
+			
+		"health_max" "14"
+		"armor_max" "4"
+		"armor_regen_per_turn" "1"
+		"armor_gain_passTurn" "2"
+		"baseDamage"  "7"
+
+	}
+}
